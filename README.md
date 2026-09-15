@@ -1,4 +1,4 @@
-# Kokulus Rift
+# Prism One
 
 **Watch earth like a human.**
 
@@ -7,7 +7,7 @@ Earth displays emit essentially nothing above 400 nm. To a Korveth, your
 carefully formatted quarterly deck is a blank warm-grey panel. This is bad for
 morale and, we are told, for compliance.
 
-Kokulus Rift re-encodes an image into the three near-ultraviolet bands a Korveth
+Prism One re-encodes an image into the three near-ultraviolet bands a Korveth
 eye actually uses, and previews it in false colour so a human can confirm the
 memo is legible before sending it.
 

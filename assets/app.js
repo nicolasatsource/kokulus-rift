@@ -390,7 +390,7 @@
     g.font = 'bold 34px Georgia, serif';
     g.fillText('INTERNAL MEMORANDUM', 132, 68);
     g.font = '20px Georgia, serif';
-    g.fillText('Kokulus Rift Station — Joint Operations', 132, 100);
+    g.fillText('Prism One Station — Joint Operations', 132, 100);
 
     g.fillStyle = '#111827';
     g.font = 'bold 26px Georgia, serif';
