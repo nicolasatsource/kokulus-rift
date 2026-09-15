@@ -1,26 +1,59 @@
 /* ==========================================================================
    Kokulus Rift — landing page + translator demo
+   Black / magenta, Orbitron + Rajdhani. Fonts are self-hosted so the page
+   makes no third-party requests.
    ========================================================================== */
 
+@font-face {
+  font-family: 'Orbitron';
+  src: url('fonts/orbitron-var.woff2') format('woff2');
+  font-weight: 500 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('fonts/rajdhani-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('fonts/rajdhani-500.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('fonts/rajdhani-600.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('fonts/rajdhani-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
 :root {
-  --bg: #0b0910;
-  --bg-alt: #0e0b16;
-  --panel: #14111c;
-  --panel-2: #1b1726;
-  --line: #2c2540;
-  --line-soft: #221d33;
-  --text: #ece9f4;
-  --muted: #a49bbd;
-  --accent: #a855f7;
-  --accent-2: #6d28d9;
-  --accent-hi: #c084fc;
-  --accent-soft: rgba(168, 85, 247, .12);
-  --good: #4ade80;
-  --warn: #fbbf24;
-  --bad: #f87171;
-  --radius: 12px;
-  --radius-lg: 18px;
-  --shadow: 0 24px 60px -28px rgba(0, 0, 0, .85);
+  --bg: #000000;
+  --bg-alt: #08020a;
+  --panel: #0c0310;
+  --panel-2: #160520;
+  --line: #3a0c42;
+  --line-soft: #240730;
+  --text: #f6eaf6;
+  --muted: #b389b6;
+  --accent: #ff2bd1;
+  --accent-2: #a1077f;
+  --accent-hi: #ff85e6;
+  --accent-soft: rgba(255, 43, 209, .13);
+  --good: #3ef2a0;
+  --warn: #ffc53d;
+  --bad: #ff5c8a;
+  --radius: 3px;
+  --radius-lg: 4px;
+  --shadow: 0 24px 60px -28px rgba(255, 43, 209, .35);
+  --display: 'Orbitron', 'Eurostile', 'Trebuchet MS', sans-serif;
+  --body: 'Rajdhani', 'Segoe UI', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -38,11 +71,21 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Rajdhani runs narrow, so it wants a little more size than a default sans. */
+  font: 500 17.5px/1.6 var(--body);
   overflow-x: hidden;
+  background-image:
+    radial-gradient(50rem 26rem at 78% -8%, rgba(255, 43, 209, .13), transparent 68%),
+    repeating-linear-gradient(0deg, rgba(255, 43, 209, .022) 0 1px, transparent 1px 3px);
+  background-attachment: fixed;
 }
 
-h1, h2, h3, h4 { line-height: 1.2; letter-spacing: -0.02em; }
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  line-height: 1.32;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
 
 a { color: inherit; }
 
@@ -59,7 +102,7 @@ a { color: inherit; }
   left: -9999px;
   top: 0;
   background: var(--accent);
-  color: #150b20;
+  color: #14000f;
   padding: 10px 16px;
   border-radius: 0 0 8px 0;
   font-weight: 600;
@@ -70,15 +113,18 @@ a { color: inherit; }
 /* ---------- buttons ---------- */
 
 .btn {
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: .07em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 12px 22px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   border: 1px solid transparent;
-  font-weight: 600;
-  font-size: .95rem;
+  font-weight: 700;
+  font-size: .78rem;
   text-decoration: none;
   white-space: nowrap;
   transition: background .15s, border-color .15s, transform .15s;
@@ -86,8 +132,8 @@ a { color: inherit; }
 
 .btn-primary {
   background: var(--accent);
-  color: #150b20;
-  box-shadow: 0 10px 30px -12px rgba(168, 85, 247, .9);
+  color: #14000f;
+  box-shadow: 0 10px 30px -12px rgba(255, 43, 209, .85);
 }
 .btn-primary:hover { background: var(--accent-hi); transform: translateY(-1px); }
 
@@ -98,8 +144,8 @@ a { color: inherit; }
 }
 .btn-ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
 
-.btn-sm { padding: 9px 16px; font-size: .88rem; }
-.btn-lg { padding: 15px 30px; font-size: 1rem; }
+.btn-sm { padding: 9px 16px; font-size: .72rem; }
+.btn-lg { padding: 15px 30px; font-size: .86rem; }
 
 .btn:focus-visible,
 a:focus-visible,
@@ -124,6 +170,8 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 }
 
 .brand {
+  font-family: var(--display);
+  font-size: .95rem;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -153,8 +201,8 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .hero {
   padding: 64px 0 24px;
   background:
-    radial-gradient(60rem 30rem at 72% -10%, rgba(109, 40, 217, .30), transparent 65%),
-    radial-gradient(40rem 24rem at 8% 0%, rgba(168, 85, 247, .14), transparent 70%);
+    radial-gradient(60rem 30rem at 72% -10%, rgba(161, 7, 127, .34), transparent 65%),
+    radial-gradient(40rem 24rem at 8% 0%, rgba(255, 43, 209, .13), transparent 70%);
 }
 
 .hero-inner {
@@ -169,8 +217,9 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 }
 
 .eyebrow {
-  margin: 0 0 14px;
-  font-size: .74rem;
+  font-family: var(--display);
+  margin: 0 0 16px;
+  font-size: .66rem;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -178,8 +227,12 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 }
 
 .hero h1 {
-  margin: 0 0 18px;
-  font-size: clamp(2.1rem, 6.4vw, 3.6rem);
+  margin: 0 0 20px;
+  font-size: clamp(1.5rem, 4.6vw, 2.65rem);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 34px rgba(255, 43, 209, .45);
 }
 
 .lede {
@@ -204,7 +257,8 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 }
 
 .audience dt {
-  font-size: .72rem;
+  font-family: var(--display);
+  font-size: .64rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -221,8 +275,8 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   padding: 14px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
-  background: linear-gradient(160deg, #241d35, #15111f);
-  box-shadow: 0 34px 90px -34px rgba(168, 85, 247, .6), inset 0 0 0 1px rgba(255, 255, 255, .03);
+  background: linear-gradient(160deg, #24062a, #0a0210);
+  box-shadow: 0 34px 90px -34px rgba(255, 43, 209, .55), inset 0 0 0 1px rgba(255, 43, 209, .08);
   animation: float 7s ease-in-out infinite;
 }
 
@@ -240,7 +294,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   padding: 22px;
   border-radius: 12px;
   overflow: hidden;
-  background: radial-gradient(130% 95% at 50% 0%, #3d1d6b 0%, #17091f 72%);
+  background: radial-gradient(130% 95% at 50% 0%, #5c0a52 0%, #11010f 74%);
 }
 
 /* faint scanlines, so it reads as an emissive panel rather than a card */
@@ -256,21 +310,21 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .mock-dot {
   width: 22px; height: 22px;
   border-radius: 50%;
-  background: #e879f9;
-  box-shadow: 0 0 18px rgba(232, 121, 249, .9);
+  background: var(--accent-hi);
+  box-shadow: 0 0 18px rgba(255, 133, 230, .9);
 }
 .mock-title {
   flex: 1;
   height: 14px;
   border-radius: 5px;
-  background: linear-gradient(90deg, #f0abfc, #a855f7);
+  background: linear-gradient(90deg, var(--accent-hi), var(--accent));
 }
 
 .mock-line {
   display: block;
   height: 9px;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--accent-hi), #7c3aed);
+  background: linear-gradient(90deg, var(--accent-hi), var(--accent-2));
   opacity: .82;
 }
 .w90 { width: 90%; } .w88 { width: 88%; } .w84 { width: 84%; }
@@ -280,14 +334,14 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   align-self: flex-end;
   margin-top: auto;
   padding: 6px 14px;
-  border: 3px solid #f0abfc;
+  border: 3px solid var(--accent-hi);
   border-radius: 6px;
-  color: #f0abfc;
+  color: var(--accent-hi);
   font-size: .78rem;
   font-weight: 700;
   letter-spacing: .14em;
   transform: rotate(-8deg);
-  text-shadow: 0 0 14px rgba(240, 171, 252, .85);
+  text-shadow: 0 0 14px rgba(255, 133, 230, .85);
 }
 
 .device-chin {
@@ -322,10 +376,12 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 }
 
 .stats dt {
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: .02em;
   color: var(--accent-hi);
+  text-shadow: 0 0 20px rgba(255, 43, 209, .5);
 }
 .stats dd { margin: 2px 0 0; font-size: .84rem; color: var(--muted); }
 
@@ -334,9 +390,10 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .logos { padding: 44px 0; border-block: 1px solid var(--line-soft); }
 
 .logos-label {
-  margin: 0 0 18px;
+  font-family: var(--display);
+  margin: 0 0 20px;
   text-align: center;
-  font-size: .74rem;
+  font-size: .62rem;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -352,10 +409,12 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   list-style: none;
 }
 .logos-row li {
-  font-weight: 700;
-  font-size: clamp(.9rem, 2.4vw, 1.05rem);
-  letter-spacing: -0.01em;
-  color: #6f6690;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(.68rem, 1.7vw, .8rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #7d5a85;
 }
 
 /* ---------- generic section ---------- */
@@ -364,7 +423,14 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .section-alt { background: var(--bg-alt); border-block: 1px solid var(--line-soft); }
 
 .section-head { max-width: 62ch; margin-bottom: 44px; }
-.section-head h2 { margin: 0 0 14px; font-size: clamp(1.6rem, 4.4vw, 2.3rem); }
+.section-head h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.18rem, 3.1vw, 1.75rem);
+  line-height: 1.26;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 26px rgba(255, 43, 209, .3);
+}
 .section-lede { margin: 0; color: var(--muted); font-size: 1.02rem; }
 .section-foot { margin: 34px 0 0; color: var(--muted); font-size: .92rem; }
 
@@ -391,7 +457,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   font-size: 1.5rem;
   color: var(--accent);
 }
-.card h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.card h3 { margin: 0 0 12px; font-size: .92rem; font-weight: 700; letter-spacing: .04em; }
 .card p { margin: 0; color: var(--muted); font-size: .93rem; }
 
 /* ---------- product split ---------- */
@@ -414,19 +480,20 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .offer-feature {
   border-color: var(--accent-2);
   background:
-    radial-gradient(40rem 20rem at 50% -30%, rgba(168, 85, 247, .16), transparent 70%),
+    radial-gradient(40rem 20rem at 50% -30%, rgba(255, 43, 209, .14), transparent 70%),
     var(--panel);
 }
 
 .offer-kind {
-  margin: 0 0 8px;
-  font-size: .7rem;
+  font-family: var(--display);
+  margin: 0 0 10px;
+  font-size: .62rem;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--accent);
 }
-.offer h3 { margin: 0 0 12px; font-size: 1.5rem; }
+.offer h3 { margin: 0 0 14px; font-size: 1.22rem; font-weight: 700; letter-spacing: .03em; }
 .offer-lede { margin: 0 0 20px; color: var(--muted); font-size: .96rem; }
 
 .offer .btn { align-self: flex-start; margin-top: auto; }
@@ -482,13 +549,14 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   background: var(--panel);
 }
 .step-n {
+  font-family: var(--display);
   margin: 0 0 12px;
-  font-size: .8rem;
+  font-size: .78rem;
   font-weight: 700;
   letter-spacing: .12em;
   color: var(--accent);
 }
-.step h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.step h3 { margin: 0 0 12px; font-size: .92rem; font-weight: 700; letter-spacing: .04em; }
 .step p { margin: 0; color: var(--muted); font-size: .93rem; }
 
 /* ---------- pricing ---------- */
@@ -515,13 +583,14 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   border-color: var(--accent-2);
   box-shadow: var(--shadow);
   background:
-    radial-gradient(40rem 20rem at 50% -30%, rgba(168, 85, 247, .18), transparent 70%),
+    radial-gradient(40rem 20rem at 50% -30%, rgba(255, 43, 209, .16), transparent 70%),
     var(--panel);
 }
 
 /* Pinned to the card edge so it cannot push the heading out of line with
    the neighbouring tiers. */
 .tier-flag {
+  font-family: var(--display);
   position: absolute;
   top: 0;
   left: 50%;
@@ -530,7 +599,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   padding: 4px 13px;
   border-radius: 999px;
   background: var(--accent);
-  color: #150b20;
+  color: #14000f;
   font-size: .66rem;
   font-weight: 700;
   letter-spacing: .1em;
@@ -538,10 +607,16 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   white-space: nowrap;
 }
 
-.tier h3 { margin: 0 0 12px; font-size: 1.2rem; }
+.tier h3 { margin: 0 0 14px; font-size: 1rem; font-weight: 700; letter-spacing: .06em; }
 
 .price { margin: 0 0 6px; display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
-.amount { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.03em; }
+.amount {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-shadow: 0 0 22px rgba(255, 43, 209, .4);
+}
 .per { font-size: .85rem; color: var(--muted); }
 
 .tier-lede { margin: 0 0 20px; color: var(--muted); font-size: .9rem; }
@@ -558,6 +633,10 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   padding: 0 20px;
 }
 .faq summary {
+  font-family: var(--display);
+  font-size: .8rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
   cursor: pointer;
   padding: 17px 0;
   font-weight: 600;
@@ -587,10 +666,17 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .cta-final {
   padding: 84px 0;
   text-align: center;
-  background: radial-gradient(48rem 24rem at 50% 120%, rgba(109, 40, 217, .35), transparent 70%);
+  background: radial-gradient(48rem 24rem at 50% 120%, rgba(161, 7, 127, .4), transparent 70%);
   border-top: 1px solid var(--line-soft);
 }
-.cta-final h2 { margin: 0 0 12px; font-size: clamp(1.5rem, 4.4vw, 2.2rem); }
+.cta-final h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.15rem, 3.2vw, 1.7rem);
+  line-height: 1.26;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 30px rgba(255, 43, 209, .4);
+}
 .cta-final p { margin: 0 0 28px; color: var(--muted); }
 
 /* ---------- footer ---------- */
@@ -609,7 +695,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   justify-content: space-between;
 }
 .foot-inner p { margin: 0; }
-.foot-brand { font-weight: 700; color: var(--text); }
+.foot-brand { font-family: var(--display); font-weight: 700; color: var(--text); }
 .foot-brand span { color: var(--accent); }
 
 /* ==========================================================================
@@ -707,7 +793,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   justify-content: center;
   min-height: 180px;
   border-radius: 10px;
-  background: repeating-conic-gradient(#191524 0% 25%, #221c30 0% 50%) 50% / 18px 18px;
+  background: repeating-conic-gradient(#120318 0% 25%, #1c0526 0% 50%) 50% / 18px 18px;
   overflow: hidden;
 }
 
@@ -812,7 +898,7 @@ select {
   border-radius: 9px;
   border: 1px solid transparent;
   background: var(--accent);
-  color: #150b20;
+  color: #14000f;
   cursor: pointer;
 }
 .loader button:hover,
@@ -880,3 +966,56 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     transition: none !important;
   }
 }
+
+
+/* ==========================================================================
+   Alien UI detailing
+   ========================================================================== */
+
+/* Magenta corner brackets on the cards that matter. Drawn with borders on two
+   pseudo-elements so they cost nothing and never clip the card's own edge. */
+.offer-feature,
+.tier-feature,
+.device { position: relative; }
+
+.offer-feature::before, .offer-feature::after,
+.tier-feature::before, .tier-feature::after,
+.device::before, .device::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+}
+
+.offer-feature::before,
+.tier-feature::before,
+.device::before {
+  top: -1px; left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.offer-feature::after,
+.tier-feature::after,
+.device::after {
+  right: -1px; bottom: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.brand-mark {
+  text-shadow: 0 0 14px var(--accent);
+}
+
+.nav { border-bottom-color: var(--line); }
+
+/* Section rules read as panel seams rather than hairlines. */
+.section-alt,
+.logos { border-block-color: var(--line-soft); }
+
+.chip,
+.card-icon { font-family: var(--display); }
+
+.card-icon { text-shadow: 0 0 18px rgba(255, 43, 209, .55); }
