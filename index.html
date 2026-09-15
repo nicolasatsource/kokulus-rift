@@ -3,167 +3,481 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kokulus Rift</title>
-<meta name="description" content="Watch earth like a human. We re-encode Earth documents into the near-ultraviolet bands your Korveth colleagues can actually read.">
+<title>Kokulus Rift &mdash; Watch earth like a human</title>
+<meta name="description" content="Cross-species visual infrastructure. The Rift Panel puts Earth documents into the near-ultraviolet bands your Korveth colleagues can actually read, and Rift Cloud streams them there.">
+<meta name="theme-color" content="#0b0910">
+<meta property="og:title" content="Kokulus Rift">
+<meta property="og:description" content="Watch earth like a human. Cross-species visual infrastructure for mixed Korveth and Earth teams.">
+<meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🛸</text></svg>">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
+<body id="top">
 
-<header class="topbar">
-  <div class="wrap">
-    <h1>Kokulus Rift</h1>
-    <p class="tagline">
-      Watch earth like a human...
-    </p>
-    <dl class="audience">
-      <div>
-        <dt>For Korveths</dt>
-        <dd>Now you can see as a human being</dd>
-      </div>
-      <div>
-        <dt>For Companies</dt>
-        <dd>Make your Korveths work like a earthlings with no hassle!</dd>
-      </div>
-    </dl>
+<a class="skip" href="#demo">Skip to the demo</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">◎</span>
+      <span>Kokulus Rift</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#problem">Problem</a>
+      <a href="#product">Product</a>
+      <a href="#demo">Demo</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#demo">Try it free</a>
   </div>
 </header>
 
-<main class="wrap">
-  <p>Test our technology for free!</p>
-  <section id="loader" class="loader">
-    <label class="dropzone" id="dropzone" for="file">
-      <span class="dz-icon" aria-hidden="true">◎</span>
-      <span class="dz-title">Drop an image here</span>
-      <span class="dz-sub">or click to choose a file &middot; you can also paste from the clipboard</span>
-      <input type="file" id="file" accept="image/*" hidden>
-    </label>
-    <button type="button" class="ghost" id="sample">Use a sample memo instead</button>
+<main>
+
+  <!-- ================= hero ================= -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Cross-species visual infrastructure</p>
+        <h1>Watch earth like a human.</h1>
+        <p class="lede">
+          Your Korveth colleagues see in the near ultraviolet. Your monitors emit
+          none of it. Kokulus Rift moves the information into bands they can
+          actually reach &mdash; on our panel, or through our API.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#demo">Try the translator free</a>
+          <a class="btn btn-ghost" href="#pricing">See pricing</a>
+        </div>
+
+        <dl class="audience">
+          <div>
+            <dt>For Korveths</dt>
+            <dd>Now you can see as a human being.</dd>
+          </div>
+          <div>
+            <dt>For companies</dt>
+            <dd>Make your Korveths work like earthlings, with no hassle.</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Hardware mock, purely decorative. -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="device">
+          <div class="device-screen">
+            <div class="mock-head">
+              <span class="mock-dot"></span>
+              <span class="mock-title"></span>
+            </div>
+            <span class="mock-line w90"></span>
+            <span class="mock-line w72"></span>
+            <span class="mock-line w84"></span>
+            <span class="mock-line w58"></span>
+            <span class="mock-line w88"></span>
+            <span class="mock-line w66"></span>
+            <span class="mock-stamp">URGENT</span>
+          </div>
+          <div class="device-chin">
+            <span class="led"></span>
+            <span>RIFT PANEL &middot; UV&#8209;A LOCKED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <dl class="stats">
+        <div><dt>3</dt><dd>receptor bands driven</dd></div>
+        <div><dt>180&nbsp;nm</dt><dd>of spectral travel</dd></div>
+        <div><dt>0</dt><dd>pixels uploaded, ever</dd></div>
+        <div><dt>14</dt><dd>Korveths onboarded</dd></div>
+      </dl>
+    </div>
   </section>
 
-  <section id="workspace" class="workspace" hidden>
+  <!-- ================= logos ================= -->
+  <section class="logos">
+    <div class="wrap">
+      <p class="logos-label">Reading their own memos at</p>
+      <ul class="logos-row">
+        <li>Tharsis Freight</li>
+        <li>Bay&nbsp;3 Logistics</li>
+        <li>Orbital HR</li>
+        <li>Meridian Dock Authority</li>
+        <li>Consolidated Gantry</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- DOM order is the mobile order: result, controls, original, diagnostics.
-         The desktop grid re-places them side by side. -->
-    <article class="pane pane-uv">
-      <header class="pane-head">
-        <h2>Korveth view</h2>
-        <span class="chip" id="bandChip">bands 600 / 550 / 450 nm</span>
+  <!-- ================= problem ================= -->
+  <section id="problem" class="section">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">The problem</p>
+        <h2>Nobody told the monitors.</h2>
+        <p class="section-lede">
+          Earth displays emit essentially nothing above 400&nbsp;nm. It does not
+          matter what is on the screen. To a Korveth it is a slab of warm grey
+          nothing, and has been since onboarding.
+        </p>
       </header>
-      <div class="stage">
-        <canvas id="uvCanvas"></canvas>
-      </div>
-      <p class="pane-note">Scroll on the image to slide the spectrum. Go on, wiggle it.</p>
-    </article>
 
-    <form class="controls" id="controls">
-      <div class="control">
-        <label for="shift">Spectral shift
-          <output id="shiftOut">0 nm</output>
+      <ul class="cards">
+        <li class="card">
+          <span class="card-icon" aria-hidden="true">▥</span>
+          <h3>Screens emit no UV</h3>
+          <p>
+            Not a contrast problem. Not a font-size problem. The photons your
+            Korveth staff need are simply not being produced by the hardware.
+          </p>
+        </li>
+        <li class="card">
+          <span class="card-icon" aria-hidden="true">▤</span>
+          <h3>Print is barely better</h3>
+          <p>
+            Toner and paper do have UV behaviour, but nothing on an Earth memo
+            was ever designed around it. Legibility is accidental at best.
+          </p>
+        </li>
+        <li class="card">
+          <span class="card-icon" aria-hidden="true">▦</span>
+          <h3>So everything gets read aloud</h3>
+          <p>
+            Which is how a dock rota becomes a two-hour meeting, and how
+            &ldquo;bay&nbsp;3&rdquo; becomes &ldquo;bay&nbsp;8&rdquo; twice in one shift.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= product ================= -->
+  <section id="product" class="section section-alt">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">The product</p>
+        <h2>One problem, two halves.</h2>
+        <p class="section-lede">
+          Something has to emit the ultraviolet, and something has to decide what
+          to put in it. We sell both, and they are considerably better together.
+        </p>
+      </header>
+
+      <div class="split">
+        <article class="offer">
+          <p class="offer-kind">Hardware</p>
+          <h3>Rift Panel</h3>
+          <p class="offer-lede">
+            A desk-mounted UV&#8209;A emissive display. It sits where a second
+            monitor would, and shows the translated feed in bands a Korveth eye
+            was built for.
+          </p>
+          <ul class="ticks">
+            <li>Three addressable UV&#8209;A emitters, 420 / 370 / 300&nbsp;nm</li>
+            <li>Mounts on any standard Earth arm, regrettably including the wobbly ones</li>
+            <li>Shielded so your Earth colleagues keep their corneas</li>
+            <li>Ships with a shade for humans who wander past and feel odd</li>
+          </ul>
+          <a class="btn btn-ghost" href="#pricing">Panel pricing</a>
+        </article>
+
+        <article class="offer offer-feature">
+          <p class="offer-kind">Software</p>
+          <h3>Rift Cloud</h3>
+          <p class="offer-lede">
+            The translation layer. Point it at a document, a screen share or a
+            live feed and it re-encodes the content into the panel's three bands
+            in real time.
+          </p>
+          <ul class="ticks">
+            <li><code>POST /v1/translate</code> for stills and documents</li>
+            <li>WebSocket channel for live screens and dock cameras</li>
+            <li>One 3&times;3 band matrix per stream, applied on the device</li>
+            <li>Runs in the browser too, which is what the demo below is</li>
+          </ul>
+          <a class="btn btn-primary" href="#demo">Try the translator</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= demo ================= -->
+  <section id="demo" class="section">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Live demo</p>
+        <h2>Test our technology for free.</h2>
+        <p class="section-lede">
+          Drop in a memo, a screenshot or a photo. Everything runs in your
+          browser &mdash; nothing is uploaded, which the investors consider a
+          missed opportunity.
+        </p>
+      </header>
+
+      <div id="loader" class="loader">
+        <label class="dropzone" id="dropzone" for="file">
+          <span class="dz-icon" aria-hidden="true">◎</span>
+          <span class="dz-title">Drop an image here</span>
+          <span class="dz-sub">or click to choose a file &middot; you can also paste from the clipboard</span>
+          <input type="file" id="file" accept="image/*" hidden>
         </label>
-        <input type="range" id="shift" min="0" max="180" step="1" value="0">
-        <p class="hint">How far down the spectrum your Korveth's eyes sit. At 0&nbsp;nm you get the boring human version.</p>
+        <button type="button" class="ghost" id="sample">Use a sample memo instead</button>
       </div>
 
-      <div class="control">
-        <label for="gain">UV gain <output id="gainOut">1.00&times;</output></label>
-        <input type="range" id="gain" min="0.2" max="3" step="0.01" value="1">
+      <!-- DOM order is the mobile order: result, controls, original, diagnostics.
+           The desktop grid re-places them side by side. -->
+      <div id="workspace" class="workspace" hidden>
+
+        <article class="pane pane-uv">
+          <header class="pane-head">
+            <h3>Korveth view</h3>
+            <span class="chip" id="bandChip">bands 600 / 550 / 450 nm</span>
+          </header>
+          <div class="stage">
+            <canvas id="uvCanvas"></canvas>
+          </div>
+          <p class="pane-note">Scroll on the image to slide the spectrum. Go on, wiggle it.</p>
+        </article>
+
+        <form class="controls" id="controls">
+          <div class="control">
+            <label for="shift">Spectral shift
+              <output id="shiftOut">0 nm</output>
+            </label>
+            <input type="range" id="shift" min="0" max="180" step="1" value="0">
+            <p class="hint">How far down the spectrum your Korveth's eyes sit. At 0&nbsp;nm you get the boring human version.</p>
+          </div>
+
+          <div class="control">
+            <label for="gain">UV gain <output id="gainOut">1.00&times;</output></label>
+            <input type="range" id="gain" min="0.2" max="3" step="0.01" value="1">
+          </div>
+
+          <div class="control">
+            <label for="contrast">Legibility contrast <output id="contrastOut">0%</output></label>
+            <input type="range" id="contrast" min="0" max="1" step="0.01" value="0">
+          </div>
+
+          <div class="control">
+            <label for="render">Render</label>
+            <select id="render">
+              <option value="native">Native bands (false colour)</option>
+              <option value="violet">Near-UV violet</option>
+              <option value="mono">High contrast mono</option>
+            </select>
+            <p class="hint">Mono for memos and spreadsheets. Native for when you want the full Korveth experience.</p>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" id="invert">
+            <span>Invert (emissive display)</span>
+          </label>
+
+          <div class="actions">
+            <button type="button" id="download">Download translation</button>
+            <button type="button" class="ghost" id="reset">Reset</button>
+            <button type="button" class="ghost" id="change">New image</button>
+          </div>
+        </form>
+
+        <article class="pane pane-original">
+          <header class="pane-head">
+            <h3>Original</h3>
+            <span class="chip" id="sizeChip"></span>
+          </header>
+          <div class="stage">
+            <canvas id="srcCanvas"></canvas>
+          </div>
+          <p class="pane-note">What your Earth colleagues stare at all day. Bleak, honestly.</p>
+        </article>
+
+        <article class="pane diagnostics">
+          <header class="pane-head"><h3>Diagnostics</h3></header>
+
+          <div class="score">
+            <div class="score-bar"><span id="scoreFill"></span></div>
+            <p><strong id="scoreVal">&ndash;</strong> Korveth legibility <span id="scoreVerdict" class="verdict"></span></p>
+          </div>
+
+          <h4>Band matrix</h4>
+          <p class="hint">Linear sRGB in, Korveth bands out. Every row sums to 1, which is our way of promising we did not just crank the hue slider.</p>
+          <table class="matrix" id="matrix">
+            <thead><tr><th></th><th>R</th><th>G</th><th>B</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </article>
+
       </div>
-
-      <div class="control">
-        <label for="contrast">Legibility contrast <output id="contrastOut">0%</output></label>
-        <input type="range" id="contrast" min="0" max="1" step="0.01" value="0">
-      </div>
-
-      <div class="control">
-        <label for="render">Render</label>
-        <select id="render">
-          <option value="native">Native bands (false colour)</option>
-          <option value="violet">Near-UV violet</option>
-          <option value="mono">High contrast mono</option>
-        </select>
-        <p class="hint">Mono for memos and spreadsheets. Native for when you want the full Korveth experience.</p>
-      </div>
-
-      <label class="check">
-        <input type="checkbox" id="invert">
-        <span>Invert (emissive display)</span>
-      </label>
-
-      <div class="actions">
-        <button type="button" id="download">Download translation</button>
-        <button type="button" class="ghost" id="reset">Reset</button>
-        <button type="button" class="ghost" id="change">New image</button>
-      </div>
-    </form>
-
-    <article class="pane pane-original">
-      <header class="pane-head">
-        <h2>Original</h2>
-        <span class="chip" id="sizeChip"></span>
-      </header>
-      <div class="stage">
-        <canvas id="srcCanvas"></canvas>
-      </div>
-      <p class="pane-note">What your Earth colleagues stare at all day. Bleak, honestly.</p>
-    </article>
-
-    <article class="pane diagnostics">
-      <header class="pane-head"><h2>Diagnostics</h2></header>
-
-      <div class="score">
-        <div class="score-bar"><span id="scoreFill"></span></div>
-        <p><strong id="scoreVal">&ndash;</strong> Korveth legibility <span id="scoreVerdict" class="verdict"></span></p>
-      </div>
-
-      <h3>Band matrix</h3>
-      <p class="hint">Linear sRGB in, Korveth bands out. Every row sums to 1, which is our way of promising we did not just crank the hue slider.</p>
-      <table class="matrix" id="matrix">
-        <thead><tr><th></th><th>R</th><th>G</th><th>B</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </article>
-
+    </div>
   </section>
 
-  <section class="notes">
-    <h2>The honest bit</h2>
-    <p>
-      A photo taken by a human camera contains no actual ultraviolet. We cannot
-      invent data nobody recorded, and any startup that tells you otherwise is
-      lying to you at a valuation.
-    </p>
-    <p>
-      What we do instead: model the reflectance curve running through the three
-      wavelengths your camera <em>did</em> sample, then read it off where a
-      Korveth eye would look. It is a re-encoding, not a photograph. Happily,
-      that is exactly what the job needs &mdash; the problem was never that your
-      memo lacks ultraviolet detail, it is that your monitor emits no
-      ultraviolet whatsoever. To a Korveth your quarterly review is a slab of
-      warm grey nothing. We move the information somewhere they can reach it.
-    </p>
+  <!-- ================= how it works ================= -->
+  <section id="how" class="section section-alt">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Three samples in, three bands out.</h2>
+      </header>
 
-    <h2>Series A roadmap</h2>
-    <p>
-      The transform in <code>assets/uv-transform.js</code> is pure, dependency-free
-      and has never seen a DOM in its life, so the same file can run on a server
-      unchanged. Next up: <code>POST /v1/translate</code> for stills and a
-      WebSocket channel for live content, so we can stream to a whole floor of
-      Korveths at once. Since the whole transform is one 3&times;3 matrix, we
-      ship the matrix and let the client do the work &mdash; extremely cheap,
-      which we will be describing as &ldquo;edge-native&rdquo; in the deck.
-    </p>
-    <p>
-      Nothing you load here leaves your machine. Every pixel is processed in
-      your browser. We are not currently monetising your holiday photos, which
-      the investors consider a missed opportunity.
-    </p>
+      <ol class="steps">
+        <li class="step">
+          <p class="step-n">01</p>
+          <h3>Read what the camera caught</h3>
+          <p>
+            An RGB image samples a scene at roughly 600, 550 and 450&nbsp;nm.
+            That is all anyone has to work with, and we are honest about it.
+          </p>
+        </li>
+        <li class="step">
+          <p class="step-n">02</p>
+          <h3>Fit the curve, slide it down</h3>
+          <p>
+            We model reflectance as a quadratic through those three points and
+            read it off where a Korveth eye would look instead.
+          </p>
+        </li>
+        <li class="step">
+          <p class="step-n">03</p>
+          <h3>Ship one small matrix</h3>
+          <p>
+            Every step is linear, so the whole translation collapses to a 3&times;3
+            matrix. We send that, and the panel does the rest.
+          </p>
+        </li>
+      </ol>
+
+      <p class="section-foot">
+        The matrix is on screen in the demo above, under <strong>Diagnostics</strong>.
+        Each row sums to 1, so neutral greys stay neutral no matter how far you
+        push the slider.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= pricing ================= -->
+  <section id="pricing" class="section">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Pricing</p>
+        <h2>Panels are one-off. Sight is a subscription.</h2>
+        <p class="section-lede">
+          We are as uncomfortable with that sentence as you are, but the deck
+          tested extremely well.
+        </p>
+      </header>
+
+      <div class="tiers">
+        <article class="tier">
+          <h3>Trial</h3>
+          <p class="price"><span class="amount">Free</span></p>
+          <p class="tier-lede">The browser translator, in full. No panel.</p>
+          <ul class="ticks">
+            <li>Unlimited stills</li>
+            <li>All three render modes</li>
+            <li>Nothing leaves your machine</li>
+            <li>Support via shouting</li>
+          </ul>
+          <a class="btn btn-ghost" href="#demo">Start now</a>
+        </article>
+
+        <article class="tier tier-feature">
+          <p class="tier-flag">Most floors pick this</p>
+          <h3>Team</h3>
+          <p class="price"><span class="amount">&euro;89</span><span class="per">/ seat / month</span></p>
+          <p class="tier-lede">One Rift Panel per seat, plus the streaming API.</p>
+          <ul class="ticks">
+            <li>Rift Panel included, replaced if dropped</li>
+            <li>Live screen-share translation</li>
+            <li>Document and email pipeline</li>
+            <li>Onboarding for up to 20 Korveths</li>
+          </ul>
+          <a class="btn btn-primary" href="#demo">Book a demo</a>
+        </article>
+
+        <article class="tier">
+          <h3>Enterprise</h3>
+          <p class="price"><span class="amount">Custom</span></p>
+          <p class="tier-lede">Floor-wide panels and the full stream.</p>
+          <ul class="ticks">
+            <li>Dock camera and signage feeds</li>
+            <li>Dedicated band calibration per site</li>
+            <li>SLA measured in shifts, not hours</li>
+            <li>A human who answers the phone</li>
+          </ul>
+          <a class="btn btn-ghost" href="#faq">Talk to us</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= faq ================= -->
+  <section id="faq" class="section section-alt">
+    <div class="wrap narrow">
+      <header class="section-head">
+        <p class="eyebrow">The honest bit</p>
+        <h2>Questions we get asked in the lobby.</h2>
+      </header>
+
+      <div class="faq">
+        <details open>
+          <summary>Is this real ultraviolet?</summary>
+          <p>
+            The panel emits real ultraviolet. The demo does not &mdash; your
+            screen cannot. What you see in the browser is a false-colour preview
+            of the same band data the panel would be driven with.
+          </p>
+        </details>
+        <details>
+          <summary>Can you recover UV from an ordinary photo?</summary>
+          <p>
+            No, and neither can anyone else. A human camera records no
+            ultraviolet, and nobody can invent data that was never captured. Any
+            startup telling you otherwise is lying to you at a valuation.
+          </p>
+          <p>
+            What we do is re-encode the information that <em>is</em> in the image
+            into bands a Korveth can reach. For the actual job that is enough,
+            because the problem was never missing UV detail &mdash; it was a
+            monitor emitting none at all.
+          </p>
+        </details>
+        <details>
+          <summary>Will my Earth staff be able to read the panel?</summary>
+          <p>
+            Not really, which several managers have described as the best part.
+            The shade in the box is for humans who walk past and feel strange
+            about it.
+          </p>
+        </details>
+        <details>
+          <summary>What happens to the images I drop into the demo?</summary>
+          <p>
+            Nothing. There is no server, no upload and no tracking on this page.
+            Every pixel is processed locally in your browser.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= final cta ================= -->
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>Your memo is already unreadable. Ours is not.</h2>
+      <p>Drop an image in and see the difference in about four seconds.</p>
+      <a class="btn btn-primary btn-lg" href="#demo">Try the translator free</a>
+    </div>
   </section>
 
 </main>
 
-<footer class="wrap foot">
-  <p>Static page. No uploads, no tracking, no network calls, no business model.</p>
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <p class="foot-brand"><span aria-hidden="true">◎</span> Kokulus Rift</p>
+    <p>Static page. No uploads, no tracking, no network calls, no business model.</p>
+  </div>
 </footer>
 
 <script src="assets/uv-transform.js"></script>
