@@ -71,6 +71,19 @@ The **Korveth legibility** readout is the standard deviation of rendered band
 luminance on a 0–100 scale — a rough proxy for whether detail survives the
 translation.
 
+## Editing the page
+
+Asset URLs carry a `?v=N` query string:
+
+```html
+<link rel="stylesheet" href="assets/styles.css?v=2">
+```
+
+GitHub Pages serves assets with `cache-control: max-age=600` and the filenames
+never change, so a browser that has seen an older version will keep using it for
+ten minutes after a deploy. **Bump `N` in `index.html` whenever you change a file
+in `assets/`** and returning visitors pick the change up immediately.
+
 ## Running it
 
 It is a static page with no build step:
