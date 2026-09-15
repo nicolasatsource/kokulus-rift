@@ -4,12 +4,15 @@
 
   var PREVIEW_CAP = 1400;  // longest side used for interactive rendering
   var EXPORT_CAP = 2400;   // longest side kept for the downloaded translation
+  var LIVE_CAP = 640;      // longest side processed per camera frame
+  var LIVE_EXPOSURE_SMOOTHING = 0.12;  // per-frame lerp toward the new exposure
+  var DIAG_INTERVAL = 200; // ms between diagnostics updates while live
 
   var $ = function (id) { return document.getElementById(id); };
 
   var el = {
     loader: $('loader'), workspace: $('workspace'), dropzone: $('dropzone'),
-    file: $('file'), sample: $('sample'),
+    file: $('file'), sample: $('sample'), camera: $('camera'), camError: $('camError'),
     srcCanvas: $('srcCanvas'), uvCanvas: $('uvCanvas'),
     shift: $('shift'), gain: $('gain'), contrast: $('contrast'),
     render: $('render'), invert: $('invert'),
@@ -17,13 +20,21 @@
     bandChip: $('bandChip'), sizeChip: $('sizeChip'),
     scoreFill: $('scoreFill'), scoreVal: $('scoreVal'), scoreVerdict: $('scoreVerdict'),
     matrix: $('matrix').querySelector('tbody'),
-    download: $('download'), reset: $('reset'), change: $('change')
+    download: $('download'), reset: $('reset'), change: $('change'), stop: $('stop')
   };
 
   var state = {
+    mode: 'still',   // 'still' | 'live'
     preview: null,   // { imageData } at PREVIEW_CAP
     exportSrc: null, // { imageData } at EXPORT_CAP
     name: 'image'
+  };
+
+  /* Live camera state. Buffers are allocated once per stream, not per frame. */
+  var live = {
+    stream: null, video: null, raf: 0,
+    w: 0, h: 0, frame: null, out: null,
+    exposure: null, frames: 0, since: 0, lastDiag: 0
   };
 
   var uvCtx = el.uvCanvas.getContext('2d', { willReadFrequently: true });
@@ -47,6 +58,8 @@
   }
 
   function load(img, name) {
+    stopCamera();
+    state.mode = 'still';
     state.name = (name || 'image').replace(/\.[^.]+$/, '');
     state.preview = sample(img, PREVIEW_CAP);
     state.exportSrc = Math.max(img.width, img.height) > PREVIEW_CAP
@@ -88,7 +101,7 @@
   }
 
   function render() {
-    if (!state.preview) return;
+    if (state.mode === 'live' || !state.preview) return;
     var src = state.preview;
     var out = uvCtx.createImageData(src.width, src.height);
     var stats = UVTransform.translate(src.data, out.data, options());
@@ -133,6 +146,140 @@
     el.contrastOut.textContent = Math.round(el.contrast.value * 100) + '%';
   }
 
+  /* ---------- live camera ---------- */
+
+  function camMessage(text) {
+    el.camError.textContent = text || '';
+    el.camError.hidden = !text;
+  }
+
+  function startCamera() {
+    camMessage('');
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      camMessage(window.isSecureContext === false
+        ? 'Camera access needs a secure origin. Open this page over https, or on localhost.'
+        : 'This browser will not give a page camera access.');
+      return;
+    }
+
+    el.camera.disabled = true;
+    navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false
+    }).then(openStream).catch(function (err) {
+      el.camera.disabled = false;
+      camMessage(cameraErrorText(err));
+    });
+  }
+
+  function cameraErrorText(err) {
+    var name = err && err.name;
+    if (name === 'NotAllowedError' || name === 'SecurityError') {
+      return 'Camera permission was declined. Allow it in your browser and try again.';
+    }
+    if (name === 'NotFoundError' || name === 'OverconstrainedError') {
+      return 'No camera found on this device.';
+    }
+    if (name === 'NotReadableError') {
+      return 'The camera is already in use by another application.';
+    }
+    return 'The camera could not be opened' + (name ? ' (' + name + ').' : '.');
+  }
+
+  function openStream(stream) {
+    live.stream = stream;
+
+    var video = document.createElement('video');
+    video.autoplay = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');   // older iOS Safari
+    video.srcObject = stream;
+    live.video = video;
+
+    video.addEventListener('loadedmetadata', function () {
+      var d = fit(video.videoWidth, video.videoHeight, LIVE_CAP);
+      live.w = d.w;
+      live.h = d.h;
+
+      el.srcCanvas.width = el.uvCanvas.width = d.w;
+      el.srcCanvas.height = el.uvCanvas.height = d.h;
+      live.out = uvCtx.createImageData(d.w, d.h);
+
+      state.mode = 'live';
+      state.preview = state.exportSrc = null;
+      state.name = 'camera';
+      live.exposure = null;
+      live.frames = 0;
+      live.since = live.lastDiag = 0;
+
+      el.sizeChip.textContent = video.videoWidth + ' \u00d7 ' + video.videoHeight + ' px';
+      el.loader.hidden = true;
+      el.workspace.hidden = false;
+      el.stop.hidden = false;
+      el.camera.disabled = false;
+
+      live.raf = requestAnimationFrame(liveFrame);
+    }, { once: true });
+
+    video.play().catch(function () { /* autoplay of a muted stream; ignore */ });
+  }
+
+  function liveFrame(now) {
+    if (state.mode !== 'live') return;
+    live.raf = requestAnimationFrame(liveFrame);
+
+    var v = live.video;
+    if (!v || v.readyState < 2) return;
+
+    srcCtx.drawImage(v, 0, 0, live.w, live.h);
+    var frame = srcCtx.getImageData(0, 0, live.w, live.h);
+
+    /* Auto-exposure is measured every frame but eased into, so a hand moving
+       through shot does not make the whole picture pump. */
+    var opts = options();
+    var measured = UVTransform.measureExposure(frame.data, opts.shift);
+    if (!live.exposure) {
+      live.exposure = measured;
+    } else {
+      var k = LIVE_EXPOSURE_SMOOTHING;
+      live.exposure = {
+        lo: live.exposure.lo + (measured.lo - live.exposure.lo) * k,
+        span: live.exposure.span + (measured.span - live.exposure.span) * k
+      };
+    }
+    opts.exposure = live.exposure;
+
+    var stats = UVTransform.translate(frame.data, live.out.data, opts);
+    uvCtx.putImageData(live.out, 0, 0);
+
+    /* Diagnostics rewrite the matrix table, so they run well below frame rate. */
+    live.frames++;
+    if (!live.since) live.since = now;
+    if (now - live.lastDiag >= DIAG_INTERVAL) {
+      report(stats);
+      var fps = live.frames / ((now - live.since) / 1000);
+      if (isFinite(fps) && fps > 0) {
+        el.sizeChip.textContent = live.w + ' \u00d7 ' + live.h + ' \u00b7 ' + fps.toFixed(0) + ' fps';
+      }
+      live.lastDiag = now;
+      if (now - live.since > 2000) { live.frames = 0; live.since = now; }
+    }
+  }
+
+  function stopCamera() {
+    if (live.raf) cancelAnimationFrame(live.raf);
+    if (live.stream) live.stream.getTracks().forEach(function (t) { t.stop(); });
+    if (live.video) { live.video.srcObject = null; live.video = null; }
+    live.stream = null;
+    live.raf = 0;
+    live.out = null;
+    live.exposure = null;
+    if (state.mode === 'live') state.mode = 'still';
+    el.stop.hidden = true;
+  }
+
   /* ---------- events ---------- */
 
   ['shift', 'gain', 'contrast'].forEach(function (k) {
@@ -143,6 +290,12 @@
 
   el.file.addEventListener('change', function () { loadFile(this.files[0]); this.value = ''; });
   el.sample.addEventListener('click', function () { loadSample(); });
+  el.camera.addEventListener('click', startCamera);
+  el.stop.addEventListener('click', function () {
+    stopCamera();
+    el.workspace.hidden = true;
+    el.loader.hidden = false;
+  });
 
   ['dragenter', 'dragover'].forEach(function (t) {
     el.dropzone.addEventListener(t, function (e) { e.preventDefault(); el.dropzone.classList.add('over'); });
@@ -166,7 +319,7 @@
     var step = (e.deltaY > 0 ? 1 : -1) * (e.shiftKey ? 1 : 5);
     el.shift.value = Math.max(0, Math.min(UVTransform.MAX_SHIFT, +el.shift.value + step));
     syncLabels();
-    scheduleRender();
+    scheduleRender();   // no-op while live; the frame loop picks the value up
   }, { passive: false });
 
   el.reset.addEventListener('click', function () {
@@ -176,12 +329,18 @@
   });
 
   el.change.addEventListener('click', function () {
+    stopCamera();
     el.workspace.hidden = true;
     el.loader.hidden = false;
+    camMessage('');
     state.preview = state.exportSrc = null;
   });
 
   el.download.addEventListener('click', function () {
+    if (state.mode === 'live') {
+      el.uvCanvas.toBlob(function (blob) { saveBlob(blob, 'frame'); }, 'image/png');
+      return;
+    }
     if (!state.exportSrc) return;
     var src = state.exportSrc;
     var c = document.createElement('canvas');
@@ -190,14 +349,21 @@
     var out = ctx.createImageData(src.width, src.height);
     UVTransform.translate(src.data, out.data, options());
     ctx.putImageData(out, 0, 0);
-    c.toBlob(function (blob) {
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = state.name + '-korveth-' + el.shift.value + 'nm.png';
-      a.click();
-      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-    }, 'image/png');
+    c.toBlob(function (blob) { saveBlob(blob); }, 'image/png');
   });
+
+  function saveBlob(blob, suffix) {
+    if (!blob) return;
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = state.name + '-korveth-' + el.shift.value + 'nm'
+      + (suffix ? '-' + suffix : '') + '.png';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  /* Release the camera if the tab is closed or navigated away from. */
+  window.addEventListener('pagehide', stopCamera);
 
   /* ---------- sample memo ---------- */
 

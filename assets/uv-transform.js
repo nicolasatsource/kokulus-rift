@@ -104,41 +104,89 @@
     return lut;
   }
 
-  var HIST_LO = -1, HIST_HI = 2, HIST_BINS = 256;
+  var HIST_BINS = 256;
+
+  /*
+   * Smallest luminance range the auto-exposure will stretch to full scale.
+   * Without a floor, a low-contrast scene (a wall, a sheet of paper, a screen
+   * showing one flat colour) drives the amplification into the tens or hundreds
+   * and the picture detonates into pure clipping. 1/16 keeps faint material
+   * genuinely liftable while bounding the gain; the UV gain slider sits on top.
+   */
+  var MIN_SPAN = 0.0625;
 
   /*
    * Auto-exposure: the shifted bands can land far outside [0,1], so stretch the
    * 1st-99th percentile of Korveth luminance back into range before rendering.
    */
   function exposure(src, m) {
+    /*
+     * Histogram bounds are derived from the matrix rather than fixed. Each band
+     * is a linear combination of (r,g,b), all in [0,1], so a row's reachable
+     * range runs from the sum of its negative coefficients to the sum of its
+     * positive ones. The bounds are the union across rows. At deep shifts the
+     * coefficients grow past 3, and a fixed range piled every sample into the
+     * end bins and returned a meaningless percentile.
+     */
+    var loBound = 0, hiBound = 0;
+    for (var r0 = 0; r0 < 3; r0++) {
+      var neg = 0, pos = 0;
+      for (var c0 = 0; c0 < 3; c0++) {
+        if (m[r0][c0] < 0) neg += m[r0][c0]; else pos += m[r0][c0];
+      }
+      if (neg < loBound) loBound = neg;
+      if (pos > hiBound) hiBound = pos;
+    }
+    if (hiBound - loBound < 1e-6) { loBound -= 0.5; hiBound += 0.5; }
+
     var hist = new Uint32Array(HIST_BINS);
     var px = src.length >> 2;
     var stride = px > 400000 ? 4 : 1;
     var counted = 0;
-    var scale = HIST_BINS / (HIST_HI - HIST_LO);
+    var scale = HIST_BINS / (hiBound - loBound);
 
     for (var p = 0; p < px; p += stride) {
       var i = p << 2;
       var r = TO_LINEAR[src[i]], g = TO_LINEAR[src[i + 1]], b = TO_LINEAR[src[i + 2]];
+      /*
+       * All three bands go into the histogram, not just their luminance. The
+       * normalisation that comes out of this is applied to each band
+       * separately, and on a saturated scene a single band's spread can dwarf
+       * the luminance spread — measuring luminance alone scaled that band
+       * straight off the end and clipped the frame solid.
+       */
       var k1 = m[0][0] * r + m[0][1] * g + m[0][2] * b;
       var k2 = m[1][0] * r + m[1][1] * g + m[1][2] * b;
       var k3 = m[2][0] * r + m[2][1] * g + m[2][2] * b;
-      var y = 0.30 * k1 + 0.50 * k2 + 0.20 * k3;
-      var bin = Math.floor((y - HIST_LO) * scale);
+
+      var bin = Math.floor((k1 - loBound) * scale);
       if (bin < 0) bin = 0; else if (bin >= HIST_BINS) bin = HIST_BINS - 1;
       hist[bin]++;
-      counted++;
+      bin = Math.floor((k2 - loBound) * scale);
+      if (bin < 0) bin = 0; else if (bin >= HIST_BINS) bin = HIST_BINS - 1;
+      hist[bin]++;
+      bin = Math.floor((k3 - loBound) * scale);
+      if (bin < 0) bin = 0; else if (bin >= HIST_BINS) bin = HIST_BINS - 1;
+      hist[bin]++;
+      counted += 3;
     }
 
     var loTarget = counted * 0.01, hiTarget = counted * 0.99;
-    var acc = 0, lo = HIST_LO, hi = HIST_HI;
+    var acc = 0, lo = loBound, hi = hiBound;
     for (var k = 0; k < HIST_BINS; k++) {
       var prev = acc;
       acc += hist[k];
-      if (prev < loTarget && acc >= loTarget) lo = HIST_LO + (k / scale);
-      if (prev < hiTarget && acc >= hiTarget) { hi = HIST_LO + ((k + 1) / scale); break; }
+      if (prev < loTarget && acc >= loTarget) lo = loBound + (k / scale);
+      if (prev < hiTarget && acc >= hiTarget) { hi = loBound + ((k + 1) / scale); break; }
     }
-    if (hi - lo < 1e-3) hi = lo + 1e-3;
+
+    /* Centre the floor on the measured range, so a flat scene stays mid-grey
+       instead of being shoved to one end. */
+    if (hi - lo < MIN_SPAN) {
+      var mid = (lo + hi) / 2;
+      lo = mid - MIN_SPAN / 2;
+      hi = mid + MIN_SPAN / 2;
+    }
     return { lo: lo, span: hi - lo };
   }
 
@@ -179,11 +227,17 @@
    *
    *   src   Uint8ClampedArray, RGBA, source pixels
    *   dst   Uint8ClampedArray, RGBA, same length (may alias src)
-   *   opts  { shift = 0, gain = 1, contrast = 0, render = 'native', invert = false }
+   *   opts  { shift = 0, gain = 1, contrast = 0, render = 'native', invert = false,
+   *           exposure = null }
    *
-   * Returns { legibility, matrix, wavelengths } where `legibility` is the
-   * standard deviation of the rendered Korveth luminance on a 0-100 scale — a
-   * rough proxy for "would a Korveth be able to pick detail out of this".
+   * `exposure` overrides the auto-exposure that would otherwise be measured from
+   * this frame. A live feed passes a smoothed value here, because re-measuring
+   * every frame makes the picture pump as the scene moves.
+   *
+   * Returns { legibility, matrix, wavelengths, exposure }, where `legibility` is
+   * the standard deviation of the rendered Korveth luminance on a 0-100 scale —
+   * a rough proxy for "would a Korveth pick detail out of this" — and `exposure`
+   * is whichever exposure the call actually used.
    */
   function translate(src, dst, opts) {
     opts = opts || {};
@@ -193,7 +247,7 @@
     var tone = toneCurve(opts.contrast || 0, !!opts.invert);
 
     var m = bandMatrix(shift);
-    var ex = exposure(src, m);
+    var ex = opts.exposure || exposure(src, m);
     var norm = gain / ex.span;
     var bias = -ex.lo * norm;
 
@@ -224,12 +278,19 @@
     return {
       legibility: Math.min(100, Math.sqrt(variance) / 1.28),
       matrix: m,
-      wavelengths: wavelengths(shift)
+      wavelengths: wavelengths(shift),
+      exposure: ex
     };
+  }
+
+  /* The auto-exposure pass on its own, for callers that smooth it over time. */
+  function measureExposure(src, shift) {
+    return exposure(src, bandMatrix(Math.max(0, Math.min(MAX_SHIFT, shift || 0))));
   }
 
   return {
     translate: translate,
+    measureExposure: measureExposure,
     bandMatrix: bandMatrix,
     wavelengths: wavelengths,
     MAX_SHIFT: MAX_SHIFT,

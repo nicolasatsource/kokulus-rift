@@ -1019,3 +1019,29 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .card-icon { font-family: var(--display); }
 
 .card-icon { text-shadow: 0 0 18px rgba(255, 43, 209, .55); }
+
+/* ---------- loader actions + camera ---------- */
+
+.loader-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cam-error {
+  margin: 0;
+  max-width: 52ch;
+  text-align: center;
+  font-size: .88rem;
+  color: var(--bad);
+  border: 1px solid var(--bad);
+  border-radius: var(--radius);
+  background: rgba(255, 92, 138, .08);
+  padding: 10px 14px;
+}
+
+/* The live feed drives both canvases, so keep them from jumping about as the
+   stream resolution settles. */
+.pane-uv .stage,
+.pane-original .stage { min-height: 200px; }

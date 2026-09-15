@@ -10,7 +10,7 @@
 <meta property="og:description" content="Watch earth like a human. Cross-species visual infrastructure for mixed Korveth and Earth teams.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🛸</text></svg>">
-<link rel="stylesheet" href="assets/styles.css?v=3">
+<link rel="stylesheet" href="assets/styles.css?v=4">
 </head>
 <body id="top">
 
@@ -39,7 +39,7 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow">Cross-species visual infrastructure</p>
+        <p class="eyebrow">Prism One</p>
         <h1>Watch earth like a human.</h1>
         <p class="lede">
           Your Korveth colleagues see in the near ultraviolet. Your monitors emit
@@ -195,7 +195,7 @@
             <li><code>POST /v1/translate</code> for stills and documents</li>
             <li>WebSocket channel for live screens and dock cameras</li>
             <li>One 3&times;3 band matrix per stream, applied on the device</li>
-            <li>Runs in the browser too, which is what the demo below is</li>
+            <li>Runs in the browser too &mdash; the live camera demo below is the same code</li>
           </ul>
           <a class="btn btn-primary" href="#demo">Try the translator</a>
         </article>
@@ -210,9 +210,10 @@
         <p class="eyebrow">Live demo</p>
         <h2>Test our technology for free.</h2>
         <p class="section-lede">
-          Drop in a memo, a screenshot or a photo. Everything runs in your
-          browser &mdash; nothing is uploaded, which the investors consider a
-          missed opportunity.
+          Drop in a memo, a screenshot or a photo &mdash; or point your camera at
+          something and watch it translate at frame rate. Everything runs in your
+          browser; nothing is uploaded, which the investors consider a missed
+          opportunity.
         </p>
       </header>
 
@@ -223,7 +224,11 @@
           <span class="dz-sub">or click to choose a file &middot; you can also paste from the clipboard</span>
           <input type="file" id="file" accept="image/*" hidden>
         </label>
-        <button type="button" class="ghost" id="sample">Use a sample memo instead</button>
+        <div class="loader-actions">
+          <button type="button" class="ghost" id="sample">Use a sample memo</button>
+          <button type="button" class="ghost" id="camera">Translate my camera, live</button>
+        </div>
+        <p class="cam-error" id="camError" role="alert" hidden></p>
       </div>
 
       <!-- DOM order is the mobile order: result, controls, original, diagnostics.
@@ -278,6 +283,7 @@
           <div class="actions">
             <button type="button" id="download">Download translation</button>
             <button type="button" class="ghost" id="reset">Reset</button>
+            <button type="button" class="ghost" id="stop" hidden>Stop camera</button>
             <button type="button" class="ghost" id="change">New image</button>
           </div>
         </form>
@@ -458,6 +464,19 @@
             Every pixel is processed locally in your browser.
           </p>
         </details>
+        <details>
+          <summary>Where does the camera feed go?</summary>
+          <p>
+            Nowhere. Frames are pulled straight into a canvas, translated and
+            drawn back out, all inside the tab. Nothing is recorded and nothing is
+            transmitted. Stop the camera and the browser drops the stream.
+          </p>
+          <p>
+            Your browser will ask permission first, and the page needs a secure
+            origin &mdash; it works here over https, and on localhost, but not from
+            a <code>file://</code> path.
+          </p>
+        </details>
       </div>
     </div>
   </section>
@@ -480,7 +499,7 @@
   </div>
 </footer>
 
-<script src="assets/uv-transform.js?v=3"></script>
-<script src="assets/app.js?v=3"></script>
+<script src="assets/uv-transform.js?v=4"></script>
+<script src="assets/app.js?v=4"></script>
 </body>
 </html>
