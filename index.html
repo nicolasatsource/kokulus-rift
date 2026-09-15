@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korveth UV Translator</title>
+<meta name="description" content="Re-encode Earth visual material into the near-ultraviolet bands Korveth colleagues can actually read.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🛸</text></svg>">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <h1>Kokulus Rift</h1>
+    <p class="tagline">
+      Watch earth like a human...
+    </p>
+    <dl class="audience">
+      <div>
+        <dt>For Korveths</dt>
+        <dd>Now you can see as a human being</dd>
+      </div>
+      <div>
+        <dt>For Companies</dt>
+        <dd>Make your Korveths work like a earthlings with no hassle!</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<main class="wrap">
+  <p>Test our technology for free!</p>
+  <section id="loader" class="loader">
+    <label class="dropzone" id="dropzone" for="file">
+      <span class="dz-icon" aria-hidden="true">◎</span>
+      <span class="dz-title">Drop an image here</span>
+      <span class="dz-sub">or click to choose a file &middot; you can also paste from the clipboard</span>
+      <input type="file" id="file" accept="image/*" hidden>
+    </label>
+    <button type="button" class="ghost" id="sample">Use a sample memo instead</button>
+  </section>
+
+  <section id="workspace" class="workspace" hidden>
+
+    <!-- DOM order is the mobile order: result, controls, original, diagnostics.
+         The desktop grid re-places them side by side. -->
+    <article class="pane pane-uv">
+      <header class="pane-head">
+        <h2>Korveth view</h2>
+        <span class="chip" id="bandChip">bands 600 / 550 / 450 nm</span>
+      </header>
+      <div class="stage">
+        <canvas id="uvCanvas"></canvas>
+      </div>
+      <p class="pane-note">Scroll on the image to slide the spectrum. Go on, wiggle it.</p>
+    </article>
+
+    <form class="controls" id="controls">
+      <div class="control">
+        <label for="shift">Spectral shift
+          <output id="shiftOut">0 nm</output>
+        </label>
+        <input type="range" id="shift" min="0" max="180" step="1" value="0">
+        <p class="hint">How far down the spectrum your Korveth's eyes sit. At 0&nbsp;nm you get the boring human version.</p>
+      </div>
+
+      <div class="control">
+        <label for="gain">UV gain <output id="gainOut">1.00&times;</output></label>
+        <input type="range" id="gain" min="0.2" max="3" step="0.01" value="1">
+      </div>
+
+      <div class="control">
+        <label for="contrast">Legibility contrast <output id="contrastOut">0%</output></label>
+        <input type="range" id="contrast" min="0" max="1" step="0.01" value="0">
+      </div>
+
+      <div class="control">
+        <label for="render">Render</label>
+        <select id="render">
+          <option value="native">Native bands (false colour)</option>
+          <option value="violet">Near-UV violet</option>
+          <option value="mono">High contrast mono</option>
+        </select>
+        <p class="hint">Mono for memos and spreadsheets. Native for when you want the full Korveth experience.</p>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" id="invert">
+        <span>Invert (emissive display)</span>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="download">Download translation</button>
+        <button type="button" class="ghost" id="reset">Reset</button>
+        <button type="button" class="ghost" id="change">New image</button>
+      </div>
+    </form>
+
+    <article class="pane pane-original">
+      <header class="pane-head">
+        <h2>Original</h2>
+        <span class="chip" id="sizeChip"></span>
+      </header>
+      <div class="stage">
+        <canvas id="srcCanvas"></canvas>
+      </div>
+      <p class="pane-note">What your Earth colleagues stare at all day. Bleak, honestly.</p>
+    </article>
+
+    <article class="pane diagnostics">
+      <header class="pane-head"><h2>Diagnostics</h2></header>
+
+      <div class="score">
+        <div class="score-bar"><span id="scoreFill"></span></div>
+        <p><strong id="scoreVal">&ndash;</strong> Korveth legibility <span id="scoreVerdict" class="verdict"></span></p>
+      </div>
+
+      <h3>Band matrix</h3>
+      <p class="hint">Linear sRGB in, Korveth bands out. Every row sums to 1, which is our way of promising we did not just crank the hue slider.</p>
+      <table class="matrix" id="matrix">
+        <thead><tr><th></th><th>R</th><th>G</th><th>B</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </article>
+
+  </section>
+
+  <section class="notes">
+    <h2>The honest bit</h2>
+    <p>
+      A photo taken by a human camera contains no actual ultraviolet. We cannot
+      invent data nobody recorded, and any startup that tells you otherwise is
+      lying to you at a valuation.
+    </p>
+    <p>
+      What we do instead: model the reflectance curve running through the three
+      wavelengths your camera <em>did</em> sample, then read it off where a
+      Korveth eye would look. It is a re-encoding, not a photograph. Happily,
+      that is exactly what the job needs &mdash; the problem was never that your
+      memo lacks ultraviolet detail, it is that your monitor emits no
+      ultraviolet whatsoever. To a Korveth your quarterly review is a slab of
+      warm grey nothing. We move the information somewhere they can reach it.
+    </p>
+
+    <h2>Series A roadmap</h2>
+    <p>
+      The transform in <code>assets/uv-transform.js</code> is pure, dependency-free
+      and has never seen a DOM in its life, so the same file can run on a server
+      unchanged. Next up: <code>POST /v1/translate</code> for stills and a
+      WebSocket channel for live content, so we can stream to a whole floor of
+      Korveths at once. Since the whole transform is one 3&times;3 matrix, we
+      ship the matrix and let the client do the work &mdash; extremely cheap,
+      which we will be describing as &ldquo;edge-native&rdquo; in the deck.
+    </p>
+    <p>
+      Nothing you load here leaves your machine. Every pixel is processed in
+      your browser. We are not currently monetising your holiday photos, which
+      the investors consider a missed opportunity.
+    </p>
+  </section>
+
+</main>
+
+<footer class="wrap foot">
+  <p>Static page. No uploads, no tracking, no network calls, no business model.</p>
+</footer>
+
+<script src="assets/uv-transform.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
