@@ -1,4 +1,4 @@
-/* app.js — UI for the Korveth UV Translator. All work is local to the browser. */
+/* app.js — UI for the Prism One translator. All work is local to the browser. */
 (function () {
   'use strict';
 
@@ -401,7 +401,7 @@
 
     g.fillStyle = '#374151';
     g.font = '20px Georgia, serif';
-    g.fillText('All Korveth personnel report to bay 3 before the second bell.', 70, 287);
+    g.fillText('All Korvethan personnel report to bay 3 before the second bell.', 70, 287);
 
     var widths = [860, 820, 870, 640, 855, 800, 870, 590, 845, 830, 710];
     g.fillStyle = '#4b5563';
@@ -427,7 +427,7 @@
     g.textAlign = 'left';
     g.fillStyle = '#6b7280';
     g.font = 'italic 18px Georgia, serif';
-    g.fillText('Posted on a standard Earth display. Invisible to Korveth eyes.', 70, 1240);
+    g.fillText('Posted on a standard Earth display. Invisible to Korvethan eyes.', 70, 1240);
 
     load(c, 'sample-memo');
   }

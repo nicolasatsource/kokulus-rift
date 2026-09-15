@@ -1,14 +1,14 @@
 # Fonts
 
-Self-hosted so the page makes no third-party requests. Both are licensed under
-the SIL Open Font License 1.1; the full text of each licence is alongside the
-files.
+Self-hosted so the page makes no third-party requests. All three families are
+licensed under the SIL Open Font License 1.1; the full text of each licence sits
+alongside the files.
 
-| Family   | Files                  | Source                                  |
-| -------- | ---------------------- | --------------------------------------- |
-| Orbitron | `orbitron-var.woff2`   | Google Fonts, variable weight 500–900   |
-| Rajdhani | `rajdhani-{400..700}`  | Google Fonts, static weights            |
+| Family        | Files                        | Notes                        |
+| ------------- | ---------------------------- | ---------------------------- |
+| Space Grotesk | `spacegrotesk-300-700.woff2` | Variable. Display, headings, wordmark |
+| Inter         | `inter-300-600.woff2`        | Variable. Body copy          |
+| Space Mono    | `spacemono-400/700.woff2`    | Eyebrows, labels, specs      |
 
-These are the `latin` subsets only. If the page ever needs `latin-ext` or other
-ranges, pull the matching subset from Google Fonts rather than swapping in the
-full font.
+These are the `latin` subsets only. If the page ever needs `latin-ext` or another
+range, pull the matching subset from Google Fonts rather than the full font.

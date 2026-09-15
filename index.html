@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Prism One &mdash; Watch earth like a human</title>
-<meta name="description" content="Cross-species visual infrastructure. The Prism Panel puts Earth documents into the near-ultraviolet bands your Korveth colleagues can actually read, and Prism Cloud streams them there.">
-<meta name="theme-color" content="#0b0910">
+<title>Prism One &mdash; Light you can eat. Light you can read.</title>
+<meta name="description" content="Prism One projects UV glyphs onto an existing screen at 41 ms, and runs a full-spectrum photosynthetic emitter across a 3-foot radius. Sold to the worker, not the employer.">
+<meta name="theme-color" content="#040817">
 <meta property="og:title" content="Prism One">
-<meta property="og:description" content="Watch earth like a human. Cross-species visual infrastructure for mixed Korveth and Earth teams.">
+<meta property="og:description" content="Light you can eat. Light you can read.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🛸</text></svg>">
-<link rel="stylesheet" href="assets/styles.css?v=5">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='0'><stop offset='0%25' stop-color='%23FF3B5C'/><stop offset='40%25' stop-color='%23FFD700'/><stop offset='70%25' stop-color='%2306B6D4'/><stop offset='100%25' stop-color='%23A855F7'/></linearGradient></defs><path d='M20 2 L38 34 L2 34 Z' fill='url(%23g)'/></svg>">
+<link rel="stylesheet" href="assets/styles.css?v=6">
 </head>
 <body id="top">
 
@@ -18,16 +18,23 @@
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark" aria-hidden="true">◎</span>
-      <span>Prism One</span>
+    <a class="brand" href="#top" aria-label="Prism One, home">
+      <svg width="26" height="23" viewBox="0 0 40 36" fill="none" aria-hidden="true">
+        <defs><linearGradient id="lg-nav" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#FF3B5C"/><stop offset="22%" stop-color="#FF8C00"/>
+          <stop offset="42%" stop-color="#FFD700"/><stop offset="60%" stop-color="#00E676"/>
+          <stop offset="80%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#A855F7"/>
+        </linearGradient></defs>
+        <path d="M20 2 L38 34 L2 34 Z" fill="url(#lg-nav)" opacity=".92"/>
+      </svg>
+      <span class="wordmark">Prism One</span>
     </a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#problem">Why?</a>
+      <a href="#korvethans">Korvethans</a>
       <a href="#product">Our tech</a>
       <a href="#demo">Show me!</a>
       <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-primary btn-sm" href="#demo">Try it free</a>
   </div>
@@ -35,198 +42,289 @@
 
 <main>
 
-  <!-- ================= hero ================= -->
+  <!-- ════════ hero ════════ -->
   <section class="hero">
     <div class="wrap hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">Prism One</p>
-        <h1>Watch earth like a human.</h1>
+      <div>
+        <p class="eyebrow">Cross-species visual infrastructure</p>
+        <h1 class="h-display">Light you can eat.<br>Light you can read.</h1>
         <p class="lede">
-          Your Korveth colleagues see in the near ultraviolet. Your monitors emit
-          none of it. Prism One moves the information into bands they can
-          actually reach &mdash; on our panel, or through our API.
+          Prism One overlays UV glyphs on the screen you already own, and runs a
+          full-spectrum emitter across the desk you already sit at. One device,
+          both halves of the spectrum.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#demo">Try the translator free</a>
+          <a class="btn btn-primary" href="#demo">Try the translator</a>
           <a class="btn btn-ghost" href="#pricing">See pricing</a>
         </div>
-
-        <dl class="audience">
-          <div>
-            <dt>For Korveths</dt>
-            <dd>Now you can see as a human being.</dd>
-          </div>
-          <div>
-            <dt>For companies</dt>
-            <dd>Make your Korveths work like earthlings, with no hassle.</dd>
-          </div>
-        </dl>
       </div>
 
-      <!-- Hardware mock, purely decorative. -->
-      <div class="hero-visual" aria-hidden="true">
-        <div class="device">
-          <div class="device-screen">
-            <div class="mock-head">
-              <span class="mock-dot"></span>
-              <span class="mock-title"></span>
-            </div>
-            <span class="mock-line w90"></span>
-            <span class="mock-line w72"></span>
-            <span class="mock-line w84"></span>
-            <span class="mock-line w58"></span>
-            <span class="mock-line w88"></span>
-            <span class="mock-line w66"></span>
-            <span class="mock-stamp">URGENT</span>
-          </div>
-          <div class="device-chin">
-            <span class="led"></span>
-            <span>RIFT PANEL &middot; UV&#8209;A LOCKED</span>
-          </div>
-        </div>
+      <div class="hero-visual">
+        <!-- Prism One. Triangular prism, apex up, rainbow ray exiting the right
+             face, on dark ground — per the product rendering rules. -->
+        <svg class="prism-float" viewBox="0 0 100 100" fill="none" role="img"
+             aria-label="Prism One: a triangular prism with a violet left face, cyan right face, and a full-spectrum ray leaving the right face.">
+          <defs>
+            <linearGradient id="pr-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D8C8FF" stop-opacity=".95"/><stop offset="40%" stop-color="#A855F7" stop-opacity=".6"/><stop offset="100%" stop-color="#7C3AED" stop-opacity=".8"/></linearGradient>
+            <linearGradient id="pr-left" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4C1D95" stop-opacity=".9"/><stop offset="100%" stop-color="#7C3AED" stop-opacity=".6"/></linearGradient>
+            <linearGradient id="pr-right" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#06B6D4" stop-opacity=".5"/><stop offset="100%" stop-color="#0891B2" stop-opacity=".8"/></linearGradient>
+            <linearGradient id="pr-ray" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FF3B5C"/><stop offset="25%" stop-color="#FFD700"/><stop offset="55%" stop-color="#00E676"/><stop offset="80%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#A855F7" stop-opacity="0"/></linearGradient>
+            <linearGradient id="pr-base" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1E1244"/><stop offset="50%" stop-color="#2D1B69"/><stop offset="100%" stop-color="#1E1244"/></linearGradient>
+          </defs>
+          <ellipse cx="50" cy="85" rx="30" ry="5" fill="url(#pr-base)" opacity=".75"/>
+          <path d="M50 8 L18 78 L50 78 Z" fill="url(#pr-left)"/>
+          <path d="M50 8 L82 78 L50 78 Z" fill="url(#pr-right)"/>
+          <path d="M50 8 L82 78 L18 78 Z" fill="url(#pr-face)" opacity=".3"/>
+          <path d="M50 8 L50 78" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+          <circle cx="50" cy="8" r="2" fill="rgba(255,255,255,.9)"/>
+          <path d="M78 60 L100 50" stroke="url(#pr-ray)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M79 65 L100 57" stroke="url(#pr-ray)" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          <path d="M80 70 L100 65" stroke="url(#pr-ray)" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        </svg>
       </div>
     </div>
 
     <div class="wrap">
-      <dl class="stats">
-        <div><dt>3</dt><dd>receptor bands driven</dd></div>
-        <div><dt>180&nbsp;nm</dt><dd>of spectral travel</dd></div>
-        <div><dt>0</dt><dd>pixels uploaded, ever</dd></div>
-        <div><dt>14</dt><dd>Korveths onboarded</dd></div>
+      <dl class="specs">
+        <div><dt>41 ms</dt><dd>End-to-end latency</dd></div>
+        <div><dt>3 ft</dt><dd>Photosynthetic radius</dd></div>
+        <div><dt>10,000 lux</dt><dd>Dawn mode output</dd></div>
+        <div><dt>Bluetooth 5.2</dt><dd>Pairs with any computer</dd></div>
       </dl>
     </div>
   </section>
 
-  <!-- ================= logos ================= -->
-  <section class="logos">
-    <div class="wrap">
-      <p class="logos-label">Reading their own memos at</p>
-      <ul class="logos-row">
-        <li>Tharsis Freight</li>
-        <li>Bay&nbsp;3 Logistics</li>
-        <li>Orbital HR</li>
-        <li>Meridian Dock Authority</li>
-        <li>Consolidated Gantry</li>
-      </ul>
-    </div>
-  </section>
+  <div class="wrap"><hr class="spectrum-divider"></div>
 
-  <!-- ================= problem ================= -->
+  <!-- ════════ problem ════════ -->
   <section id="problem" class="section">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">The problem</p>
-        <h2>Nobody told the monitors.</h2>
+        <h2 class="h-section">Nobody told the monitors.</h2>
         <p class="section-lede">
-          Earth displays emit essentially nothing above 400&nbsp;nm. It does not
-          matter what is on the screen. To a Korveth it is a slab of warm grey
-          nothing, and has been since onboarding.
+          Earth displays emit nothing above 400 nm. The content is there; the
+          wavelengths are not. Prism One puts them back.
         </p>
       </header>
 
       <ul class="cards">
         <li class="card">
-          <span class="card-icon" aria-hidden="true">▥</span>
-          <h3>Screens emit no UV</h3>
+          <svg viewBox="0 0 26 26" fill="none" stroke="#A855F7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="20" height="14" rx="2"/>
+            <line x1="9" y1="22" x2="17" y2="22"/>
+            <line x1="13" y1="18" x2="13" y2="22"/>
+            <line x1="7" y1="9" x2="19" y2="9" opacity=".5"/>
+            <line x1="7" y1="12" x2="16" y2="12" opacity=".5"/>
+          </svg>
+          <h3 class="h-card">Screens emit no UV</h3>
           <p>
-            Not a contrast problem. Not a font-size problem. The photons your
-            Korveth staff need are simply not being produced by the hardware.
+            Not a contrast problem and not a font-size problem. The wavelengths a
+            Korvethan reads in are simply not produced by the hardware.
           </p>
         </li>
         <li class="card">
-          <span class="card-icon" aria-hidden="true">▤</span>
-          <h3>Print is barely better</h3>
+          <svg viewBox="0 0 26 26" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 13a7 7 0 1 1-7-7"/>
+            <polyline points="16,3 20,6 17,10"/>
+            <circle cx="13" cy="13" r="2" fill="#06B6D4" stroke="none"/>
+          </svg>
+          <h3 class="h-card">Live, not transcribed</h3>
           <p>
-            Toner and paper do have UV behaviour, but nothing on an Earth memo
-            was ever designed around it. Legibility is accidental at best.
+            UV glyphs overlay your existing screen at 41 ms &mdash; live
+            spreadsheets, live cursors, live meetings. Nothing is exported and
+            nothing waits on a colleague to read it out.
           </p>
         </li>
         <li class="card">
-          <span class="card-icon" aria-hidden="true">▦</span>
-          <h3>So everything gets read aloud</h3>
+          <svg viewBox="0 0 26 26" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="13" cy="13" r="4"/>
+            <line x1="13" y1="3" x2="13" y2="6"/><line x1="13" y1="20" x2="13" y2="23"/>
+            <line x1="3" y1="13" x2="6" y2="13"/><line x1="20" y1="13" x2="23" y2="13"/>
+            <line x1="5.9" y1="5.9" x2="8" y2="8"/><line x1="18" y1="18" x2="20.1" y2="20.1"/>
+            <line x1="20.1" y1="5.9" x2="18" y2="8"/><line x1="8" y1="18" x2="5.9" y2="20.1"/>
+          </svg>
+          <h3 class="h-card">Interior desks are dark</h3>
           <p>
-            Which is how a dock rota becomes a two-hour meeting, and how
-            &ldquo;bay&nbsp;3&rdquo; becomes &ldquo;bay&nbsp;8&rdquo; twice in one shift.
+            The ambient emitter carries full-spectrum output across a 3-foot
+            radius, so a desk away from a window is still a desk you can work at.
           </p>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ================= product ================= -->
-  <section id="product" class="section section-alt">
+  <div class="wrap"><hr class="spectrum-divider"></div>
+
+  <!-- ════════ korvethans ════════ -->
+  <section id="korvethans" class="section section-alt">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Who this is for</p>
+        <h2 class="h-section">Prism One is sold to the worker, not the employer.</h2>
+        <p class="section-lede">
+          The device belongs to the person using it. It moves desks, it moves
+          jobs, and it is configured by its owner.
+        </p>
+      </header>
+
+      <div class="korvethan">
+        <div class="korvethan-figure">
+          <!-- Canonical anatomy: compound eyes, hexagonal carapace, leaf
+               structures angled toward the light, six legs, UV-sensing antennae. -->
+          <svg viewBox="0 0 60 95" role="img"
+               aria-label="A Korvethan: compound eyes with a teal-to-violet gradient, a hexagonal carapace dome, leaf structures angled upward toward the light, six segmented legs, and antennae tipped with violet UV-sensing orbs.">
+            <defs>
+              <radialGradient id="kv-eye" cx="38%" cy="32%" r="58%"><stop offset="0%" stop-color="#00FFD4"/><stop offset="40%" stop-color="#0EA5E9"/><stop offset="100%" stop-color="#6D28D9"/></radialGradient>
+              <radialGradient id="kv-cara" cx="45%" cy="22%" r="68%"><stop offset="0%" stop-color="#22D3EE"/><stop offset="60%" stop-color="#0E7490"/><stop offset="100%" stop-color="#0D3D30"/></radialGradient>
+              <linearGradient id="kv-body" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C084B0"/><stop offset="100%" stop-color="#6B2460"/></linearGradient>
+              <linearGradient id="kv-leaf" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#047857"/><stop offset="100%" stop-color="#6EE7B7"/></linearGradient>
+            </defs>
+            <path d="M21 66 Q10 72 5 80" stroke="#7B341E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M21 70 Q8 78 4 88" stroke="#7B341E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M22 74 Q12 82 9 93" stroke="#7B341E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M39 66 Q50 72 55 80" stroke="#7B341E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M39 70 Q52 78 56 88" stroke="#7B341E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M38 74 Q48 82 51 93" stroke="#7B341E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="30" cy="68" rx="12" ry="10" fill="url(#kv-body)"/>
+            <path d="M22 65 L26 60 L34 60 L38 65 L34 70 L26 70Z" fill="none" stroke="rgba(200,100,200,.22)" stroke-width=".6"/>
+            <path d="M13 52 Q12 36 30 33 Q48 36 47 52 Q47 62 30 64 Q13 62 13 52Z" fill="url(#kv-cara)"/>
+            <path d="M17 50 L21 44 L29 44 L33 44 L39 44 L43 50 L39 56 L33 56 L29 56 L21 56Z" fill="none" stroke="rgba(0,255,200,.28)" stroke-width=".7"/>
+            <path d="M21 44 L25 38 L35 38 L39 44" fill="none" stroke="rgba(0,255,200,.22)" stroke-width=".6"/>
+            <path d="M30 35 L30 62" stroke="rgba(0,220,180,.18)" stroke-width=".5"/>
+            <path d="M23 40 Q16 24 22 12 Q28 22 26 40Z" fill="url(#kv-leaf)" opacity=".85"/>
+            <path d="M30 37 Q24 18 30 8 Q37 18 35 37Z" fill="url(#kv-leaf)" opacity=".9"/>
+            <path d="M37 40 Q44 23 38 12 Q32 23 34 40Z" fill="url(#kv-leaf)" opacity=".8"/>
+            <line x1="24" y1="38" x2="22" y2="14" stroke="rgba(16,185,129,.45)" stroke-width=".6"/>
+            <line x1="31" y1="36" x2="30" y2="10" stroke="rgba(16,185,129,.45)" stroke-width=".6"/>
+            <line x1="37" y1="38" x2="38" y2="14" stroke="rgba(16,185,129,.4)" stroke-width=".6"/>
+            <ellipse cx="30" cy="40" rx="7" ry="5" fill="url(#kv-body)"/>
+            <ellipse cx="30" cy="30" rx="9" ry="8" fill="url(#kv-body)"/>
+            <ellipse cx="21" cy="28" rx="7.5" ry="6.5" fill="url(#kv-eye)"/>
+            <ellipse cx="39" cy="28" rx="7.5" ry="6.5" fill="url(#kv-eye)"/>
+            <ellipse cx="19" cy="25" rx="2.5" ry="2" fill="rgba(255,255,255,.5)"/>
+            <ellipse cx="37" cy="25" rx="2.5" ry="2" fill="rgba(255,255,255,.5)"/>
+            <ellipse cx="23" cy="30" rx="1.2" ry="1" fill="rgba(0,255,220,.7)"/>
+            <ellipse cx="41" cy="30" rx="1.2" ry="1" fill="rgba(0,255,220,.7)"/>
+            <path d="M22 22 Q14 12 16 4" fill="none" stroke="#9B6B8E" stroke-width="1.3" stroke-linecap="round"/>
+            <path d="M38 22 Q46 12 44 4" fill="none" stroke="#9B6B8E" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="16" cy="4" r="2.2" fill="#A855F7" opacity=".9"/>
+            <circle cx="44" cy="4" r="2.2" fill="#A855F7" opacity=".9"/>
+          </svg>
+        </div>
+
+        <div>
+          <p class="body-sm" style="margin-bottom:6px">
+            Two systems have to be served at once, and the hardware serves both
+            from the same chassis: antennae read UV, leaf structures read light.
+            A device that only did one would be half a device.
+          </p>
+          <ul class="anatomy">
+            <li><span class="mono-label">Antennae</span><span>Violet orb tips, UV-sensing. What the glyph overlay is aimed at.</span></li>
+            <li><span class="mono-label">Compound eyes</span><span>Teal through cyan to violet. Two eye-shine highlights.</span></li>
+            <li><span class="mono-label">Carapace</span><span>Hexagonal lattice across the whole dorsal surface.</span></li>
+            <li><span class="mono-label">Leaf structures</span><span>Angled toward the strongest light. What the ambient emitter feeds.</span></li>
+            <li><span class="mono-label">Six legs</span><span>Segmented at two joints, three per side.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="spectrum-divider"></div>
+
+  <!-- ════════ product ════════ -->
+  <section id="product" class="section">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">The product</p>
-        <h2>One problem, two halves.</h2>
+        <h2 class="h-section">One chassis, one platform.</h2>
         <p class="section-lede">
           Something has to emit the ultraviolet, and something has to decide what
-          to put in it. We sell both, and they are considerably better together.
+          goes in it.
         </p>
       </header>
 
       <div class="split">
-        <article class="offer">
-          <p class="offer-kind">Hardware</p>
-          <h3>Prism Panel</h3>
+        <article class="offer offer-feature">
+          <div class="offer-head">
+            <svg viewBox="0 0 26 26" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 4 L22 20 L4 20 Z" fill="none" stroke="#A855F7" stroke-width="1.8"/>
+              <line x1="20" y1="15" x2="24" y2="12" stroke="#FF3B5C" stroke-width="1.5"/>
+              <line x1="20.5" y1="17" x2="24" y2="15" stroke="#FFD700" stroke-width="1.5"/>
+              <line x1="21" y1="19" x2="24" y2="18" stroke="#00E676" stroke-width="1.5"/>
+            </svg>
+            <h3>Prism One</h3>
+          </div>
           <p class="offer-lede">
-            A desk-mounted UV&#8209;A emissive display. It sits where a second
-            monitor would, and shows the translated feed in bands a Korveth eye
-            was built for.
+            Hardware Rev 1.0. A triangular prism that sits beside the monitor and
+            drives three emitters from one chassis.
           </p>
           <ul class="ticks">
-            <li>Three addressable UV&#8209;A emitters, 420 / 370 / 300&nbsp;nm</li>
-            <li>Mounts on any standard Earth arm, regrettably including the wobbly ones</li>
-            <li>Shielded so your Earth colleagues keep their corneas</li>
-            <li>Ships with a shade for humans who wander past and feel odd</li>
+            <li>UV emitter array &mdash; monitor-facing, tight-beam, contained by geometry</li>
+            <li>Ambient photosynthetic emitter &mdash; full-spectrum, 3-foot radius</li>
+            <li>Dawn / Host mode &mdash; 10,000-lux wellness, 45-minute guest course</li>
+            <li>Bluetooth 5.2 at 41 ms. Open ecosystem, no proprietary dock</li>
           </ul>
-          <a class="btn btn-ghost" href="#pricing">Panel pricing</a>
+          <a class="btn btn-primary" href="#pricing">See pricing</a>
         </article>
 
-        <article class="offer offer-feature">
-          <p class="offer-kind">Software</p>
-          <h3>Prism Cloud</h3>
+        <article class="offer">
+          <div class="offer-head">
+            <svg viewBox="0 0 26 26" fill="none" stroke="#00E676" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9,9 4,13 9,17"/>
+              <polyline points="17,9 22,13 17,17"/>
+              <line x1="15" y1="6" x2="11" y2="20"/>
+            </svg>
+            <h3>Prism+</h3>
+          </div>
           <p class="offer-lede">
-            The translation layer. Point it at a document, a screen share or a
-            live feed and it re-encodes the content into the panel's three bands
-            in real time.
+            The platform the device talks to. Encodes source material into the
+            three bands the emitter array drives.
           </p>
           <ul class="ticks">
-            <li><code>POST /v1/translate</code> for stills and documents</li>
+            <li><code>POST /v1/translate</code> for documents and stills</li>
             <li>WebSocket channel for live screens and dock cameras</li>
-            <li>One 3&times;3 band matrix per stream, applied on the device</li>
-            <li>Runs in the browser too &mdash; the live camera demo below is the same code</li>
+            <li>Spectral Interchange Format &mdash; one 3&times;3 band matrix per stream</li>
+            <li>Runs in the browser too. The demo below is the same code</li>
           </ul>
-          <a class="btn btn-primary" href="#demo">Try the translator</a>
+          <a class="btn btn-ghost" href="#demo">Try the translator</a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ================= demo ================= -->
+  <div class="wrap"><hr class="spectrum-divider"></div>
+
+  <!-- ════════ demo ════════ -->
   <section id="demo" class="section">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">Live demo</p>
-        <h2>Test our technology for free.</h2>
+        <h2 class="h-section">Test our technology for free.</h2>
         <p class="section-lede">
-          Drop in a memo, a screenshot or a photo &mdash; or point your camera at
-          something and watch it translate at frame rate. Everything runs in your
-          browser; nothing is uploaded, which the investors consider a missed
-          opportunity.
+          The same encoder that drives the emitter array, running in your browser.
+          Drop in a document or point a camera at something. Nothing is uploaded.
         </p>
       </header>
 
       <div id="loader" class="loader">
         <label class="dropzone" id="dropzone" for="file">
-          <span class="dz-icon" aria-hidden="true">◎</span>
+          <span class="dz-icon" aria-hidden="true">
+            <svg viewBox="0 0 26 26" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 4 L22 20 L4 20 Z" fill="none" stroke="#A855F7" stroke-width="1.6"/>
+              <line x1="20" y1="15" x2="24" y2="12" stroke="#FF3B5C" stroke-width="1.4"/>
+              <line x1="20.5" y1="17" x2="24" y2="15" stroke="#FFD700" stroke-width="1.4"/>
+              <line x1="21" y1="19" x2="24" y2="18" stroke="#00E676" stroke-width="1.4"/>
+            </svg>
+          </span>
           <span class="dz-title">Drop an image here</span>
           <span class="dz-sub">or click to choose a file &middot; you can also paste from the clipboard</span>
           <input type="file" id="file" accept="image/*" hidden>
         </label>
         <div class="loader-actions">
-          <button type="button" class="ghost" id="sample">Use a sample memo</button>
-          <button type="button" class="ghost" id="camera">Translate my camera, live</button>
+          <button type="button" id="sample">Use a sample memo</button>
+          <button type="button" id="camera">Translate my camera, live</button>
         </div>
         <p class="cam-error" id="camError" role="alert" hidden></p>
       </div>
@@ -237,22 +335,18 @@
 
         <article class="pane pane-uv">
           <header class="pane-head">
-            <h3>Korveth view</h3>
+            <h3>Korvethan view</h3>
             <span class="chip" id="bandChip">bands 600 / 550 / 450 nm</span>
           </header>
-          <div class="stage">
-            <canvas id="uvCanvas"></canvas>
-          </div>
-          <p class="pane-note">Scroll on the image to slide the spectrum. Go on, wiggle it.</p>
+          <div class="stage"><canvas id="uvCanvas"></canvas></div>
+          <p class="pane-note">Scroll on the image to slide the spectrum.</p>
         </article>
 
         <form class="controls" id="controls">
           <div class="control">
-            <label for="shift">Spectral shift
-              <output id="shiftOut">0 nm</output>
-            </label>
+            <label for="shift">Spectral shift <output id="shiftOut">0 nm</output></label>
             <input type="range" id="shift" min="0" max="180" step="1" value="0">
-            <p class="hint">How far down the spectrum your Korveth's eyes sit. At 0&nbsp;nm you get the boring human version.</p>
+            <p class="hint">How far down the spectrum the receptors sit. At 0 nm the output is the untouched original.</p>
           </div>
 
           <div class="control">
@@ -272,7 +366,7 @@
               <option value="violet">Near-UV violet</option>
               <option value="mono">High contrast mono</option>
             </select>
-            <p class="hint">Mono for memos and spreadsheets. Native for when you want the full Korveth experience.</p>
+            <p class="hint">Mono for documents. Native keeps every distinction the band matrix makes.</p>
           </div>
 
           <label class="check">
@@ -282,33 +376,29 @@
 
           <div class="actions">
             <button type="button" id="download">Download translation</button>
-            <button type="button" class="ghost" id="reset">Reset</button>
-            <button type="button" class="ghost" id="stop" hidden>Stop camera</button>
-            <button type="button" class="ghost" id="change">New image</button>
+            <button type="button" id="reset">Reset</button>
+            <button type="button" id="stop" hidden>Stop camera</button>
+            <button type="button" id="change">New image</button>
           </div>
         </form>
 
         <article class="pane pane-original">
           <header class="pane-head">
-            <h3>Original</h3>
+            <h3>Source</h3>
             <span class="chip" id="sizeChip"></span>
           </header>
-          <div class="stage">
-            <canvas id="srcCanvas"></canvas>
-          </div>
-          <p class="pane-note">What your Earth colleagues stare at all day. Bleak, honestly.</p>
+          <div class="stage"><canvas id="srcCanvas"></canvas></div>
+          <p class="pane-note">The visible-spectrum original.</p>
         </article>
 
         <article class="pane diagnostics">
           <header class="pane-head"><h3>Diagnostics</h3></header>
-
           <div class="score">
             <div class="score-bar"><span id="scoreFill"></span></div>
-            <p><strong id="scoreVal">&ndash;</strong> Korveth legibility <span id="scoreVerdict" class="verdict"></span></p>
+            <p><strong id="scoreVal">&ndash;</strong> Korvethan legibility <span id="scoreVerdict" class="verdict"></span></p>
           </div>
-
           <h4>Band matrix</h4>
-          <p class="hint">Linear sRGB in, Korveth bands out. Every row sums to 1, which is our way of promising we did not just crank the hue slider.</p>
+          <p class="hint">Linear sRGB in, Korvethan bands out. Every row sums to 1, so neutral greys stay neutral at any shift.</p>
           <table class="matrix" id="matrix">
             <thead><tr><th></th><th>R</th><th>G</th><th>B</th></tr></thead>
             <tbody></tbody>
@@ -319,98 +409,91 @@
     </div>
   </section>
 
-  <!-- ================= how it works ================= -->
+  <div class="wrap"><hr class="spectrum-divider"></div>
+
+  <!-- ════════ how it works ════════ -->
   <section id="how" class="section section-alt">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">How it works</p>
-        <h2>Three samples in, three bands out.</h2>
+        <h2 class="h-section">Three samples in, three bands out.</h2>
       </header>
 
       <ol class="steps">
         <li class="step">
-          <p class="step-n">01</p>
-          <h3>Read what the camera caught</h3>
-          <p>
-            An RGB image samples a scene at roughly 600, 550 and 450&nbsp;nm.
-            That is all anyone has to work with, and we are honest about it.
-          </p>
+          <p class="step-n mono-label">Step 01</p>
+          <h3 class="h-card">Read what the camera caught</h3>
+          <p>An RGB image samples a scene at roughly 600, 550 and 450 nm. That is the whole input.</p>
         </li>
         <li class="step">
-          <p class="step-n">02</p>
-          <h3>Fit the curve, slide it down</h3>
-          <p>
-            We model reflectance as a quadratic through those three points and
-            read it off where a Korveth eye would look instead.
-          </p>
+          <p class="step-n mono-label">Step 02</p>
+          <h3 class="h-card">Fit the curve, slide it down</h3>
+          <p>Reflectance is modelled as a quadratic through those three points, then read off where the Korvethan receptors sit.</p>
         </li>
         <li class="step">
-          <p class="step-n">03</p>
-          <h3>Ship one small matrix</h3>
-          <p>
-            Every step is linear, so the whole translation collapses to a 3&times;3
-            matrix. We send that, and the panel does the rest.
-          </p>
+          <p class="step-n mono-label">Step 03</p>
+          <h3 class="h-card">Ship one small matrix</h3>
+          <p>Every step is linear, so the translation collapses to a 3&times;3 matrix. That is the Spectral Interchange Format.</p>
         </li>
       </ol>
 
       <p class="section-foot">
         The matrix is on screen in the demo above, under <strong>Diagnostics</strong>.
-        Each row sums to 1, so neutral greys stay neutral no matter how far you
-        push the slider.
+        Each row sums to 1, so neutral greys stay neutral no matter how far you push it.
       </p>
     </div>
   </section>
 
-  <!-- ================= pricing ================= -->
+  <div class="wrap"><hr class="spectrum-divider"></div>
+
+  <!-- ════════ pricing ════════ -->
   <section id="pricing" class="section">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">Pricing</p>
-        <h2>Panels are one-off. Sight is a subscription.</h2>
+        <h2 class="h-section">Bought by the person using it.</h2>
         <p class="section-lede">
-          We are as uncomfortable with that sentence as you are, but the deck
-          tested extremely well.
+          Prism One is sold to the worker, not the employer. It leaves with you.
         </p>
       </header>
 
       <div class="tiers">
         <article class="tier">
-          <h3>Trial</h3>
+          <h3>Translator</h3>
           <p class="price"><span class="amount">Free</span></p>
-          <p class="tier-lede">The browser translator, in full. No panel.</p>
+          <p class="tier-lede">The browser encoder, in full. No device.</p>
           <ul class="ticks">
-            <li>Unlimited stills</li>
+            <li>Unlimited documents and stills</li>
+            <li>Live camera translation</li>
             <li>All three render modes</li>
             <li>Nothing leaves your machine</li>
-            <li>Support via shouting</li>
           </ul>
           <a class="btn btn-ghost" href="#demo">Start now</a>
         </article>
 
         <article class="tier tier-feature">
-          <p class="tier-flag">Most floors pick this</p>
-          <h3>Team</h3>
-          <p class="price"><span class="amount">$19.95</span><span class="per">/ seat / month</span></p>
-          <p class="tier-lede">One Prism Panel per seat, plus the streaming API.</p>
+          <p class="tier-flag mono-label">Most owners pick this</p>
+          <h3>Prism One</h3>
+          <p class="price"><span class="amount">&euro;540</span><span class="per">once &middot; yours to keep</span></p>
+          <p class="tier-lede">The device, with Prism+ included for the life of the hardware.</p>
           <ul class="ticks">
-            <li>Prism Panel included, replaced if dropped</li>
-            <li>Live screen-share translation</li>
-            <li>Document and email pipeline</li>
-            <li>Onboarding for up to 20 Korveths</li>
+            <li>Prism One, Hardware Rev 1.0</li>
+            <li>Live screen overlay at 41 ms</li>
+            <li>Dawn and Host modes, both full products</li>
+            <li>Moves desk to desk and job to job</li>
           </ul>
-          <a class="btn btn-primary" href="#demo">Book a demo</a>
+          <a class="btn btn-primary" href="#demo">Try it first</a>
         </article>
 
         <article class="tier">
-          <h3>Enterprise</h3>
+          <h3>Prism+ for teams</h3>
           <p class="price"><span class="amount">Custom</span></p>
-          <p class="tier-lede">Floor-wide panels and the full stream.</p>
+          <p class="tier-lede">Site feeds and signage, on top of devices people already own.</p>
           <ul class="ticks">
-            <li>Dock camera and signage feeds</li>
-            <li>Dedicated band calibration per site</li>
-            <li>SLA measured in shifts, not hours</li>
-            <li>A human who answers the phone</li>
+            <li>Dock camera and signage channels</li>
+            <li>Per-site band calibration</li>
+            <li>Spectral Interchange Format SDK</li>
+            <li>Devices stay the property of their owners</li>
           </ul>
           <a class="btn btn-ghost" href="#faq">Talk to us</a>
         </article>
@@ -418,43 +501,45 @@
     </div>
   </section>
 
-  <!-- ================= faq ================= -->
-  <section id="faq" class="section section-alt">
+  <div class="wrap"><hr class="spectrum-divider"></div>
+
+  <!-- ════════ faq ════════ -->
+  <section id="faq" class="section">
     <div class="wrap narrow">
       <header class="section-head">
-        <p class="eyebrow">The honest bit</p>
-        <h2>Questions we get asked in the lobby.</h2>
+        <p class="eyebrow">Questions</p>
+        <h2 class="h-section">Asked in the lobby.</h2>
       </header>
 
       <div class="faq">
         <details open>
           <summary>Is this real ultraviolet?</summary>
           <p>
-            The panel emits real ultraviolet. The demo does not &mdash; your
-            screen cannot. What you see in the browser is a false-colour preview
-            of the same band data the panel would be driven with.
+            The device emits real ultraviolet, tight-beam and contained by the
+            geometry of the chassis. The demo does not &mdash; your screen cannot.
+            What the browser shows is a false-colour preview of the same band data
+            the emitter array would be driven with.
           </p>
         </details>
         <details>
           <summary>Can you recover UV from an ordinary photo?</summary>
           <p>
-            No, and neither can anyone else. A human camera records no
-            ultraviolet, and nobody can invent data that was never captured. Any
-            startup telling you otherwise is lying to you at a valuation.
+            No. A human camera records no ultraviolet, and nothing can recover
+            what was never captured. The encoder re-expresses the information that
+            is in the image into bands the array can drive.
           </p>
           <p>
-            What we do is re-encode the information that <em>is</em> in the image
-            into bands a Korveth can reach. For the actual job that is enough,
-            because the problem was never missing UV detail &mdash; it was a
-            monitor emitting none at all.
+            For the actual job that is the right operation, because the problem was
+            never missing UV detail. It was a monitor emitting none at all.
           </p>
         </details>
         <details>
-          <summary>Will my Earth staff be able to read the panel?</summary>
+          <summary>Is the UV output safe for everyone at the desk?</summary>
           <p>
-            Not really, which several managers have described as the best part.
-            The shade in the box is for humans who walk past and feel strange
-            about it.
+            The UV array is monitor-facing and tight-beam, contained by the
+            geometry of the chassis. The ambient emitter is full-spectrum across a
+            3-foot radius. Dawn mode runs at 10,000 lux for human wellness, and
+            Host mode runs a 45-minute guest course from the same hardware.
           </p>
         </details>
         <details>
@@ -467,8 +552,8 @@
         <details>
           <summary>Where does the camera feed go?</summary>
           <p>
-            Nowhere. Frames are pulled straight into a canvas, translated and
-            drawn back out, all inside the tab. Nothing is recorded and nothing is
+            Nowhere. Frames are pulled into a canvas, translated and drawn back
+            out, all inside the tab. Nothing is recorded and nothing is
             transmitted. Stop the camera and the browser drops the stream.
           </p>
           <p>
@@ -481,25 +566,37 @@
     </div>
   </section>
 
-  <!-- ================= final cta ================= -->
+  <!-- ════════ closing ════════ -->
   <section class="cta-final">
     <div class="wrap">
-      <h2>Your memo is already unreadable. Ours is not.</h2>
-      <p>Drop an image in and see the difference in about four seconds.</p>
-      <a class="btn btn-primary btn-lg" href="#demo">Try the translator free</a>
+      <h2 class="h-section">Light you can eat. Light you can read.</h2>
+      <p>Point a camera at something and watch the spectrum move. Four seconds, no account.</p>
+      <a class="btn btn-primary btn-lg" href="#demo">Try the translator</a>
     </div>
   </section>
 
 </main>
 
+<hr class="spectrum-bar">
+
 <footer class="site-foot">
   <div class="wrap foot-inner">
-    <p class="foot-brand"><span aria-hidden="true">◎</span> Prism One</p>
-    <p>Static page. No uploads, no tracking, no network calls, no business model.</p>
+    <p class="foot-brand">
+      <svg width="22" height="20" viewBox="0 0 40 36" fill="none" aria-hidden="true">
+        <defs><linearGradient id="lg-foot" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#FF3B5C"/><stop offset="22%" stop-color="#FF8C00"/>
+          <stop offset="42%" stop-color="#FFD700"/><stop offset="60%" stop-color="#00E676"/>
+          <stop offset="80%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#A855F7"/>
+        </linearGradient></defs>
+        <path d="M20 2 L38 34 L2 34 Z" fill="url(#lg-foot)" opacity=".92"/>
+      </svg>
+      <span class="wordmark">Prism One</span>
+    </p>
+    <p>Static page. No uploads, no tracking, no network calls.</p>
   </div>
 </footer>
 
-<script src="assets/uv-transform.js?v=5"></script>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/uv-transform.js?v=6"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

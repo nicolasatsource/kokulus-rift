@@ -1,5 +1,5 @@
 /*
- * uv-transform.js — Korveth spectral re-encoder (pure, no DOM).
+ * uv-transform.js — Prism spectral re-encoder (pure, no DOM).
  *
  * This module is deliberately free of browser APIs so the same code can back
  * the planned REST streaming endpoint (see README "Roadmap"). It operates on
@@ -9,7 +9,7 @@
  * Model
  * -----
  * Human sRGB samples a scene at roughly three wavelengths: 600nm (R), 550nm
- * (G), 450nm (B). Korveth photoreceptors sit the same distance apart but
+ * (G), 450nm (B). Korvethan photoreceptors sit the same distance apart but
  * shifted down the spectrum by `shift` nm, into the near ultraviolet.
  *
  * Reflectance across the three human samples is modelled as a quadratic; past
@@ -53,7 +53,7 @@
    * A Lagrange quadratic through the three human sample points. Using all three
    * points (rather than extrapolating along the nearest slope) is what keeps the
    * band matrix full rank at deep shifts: a slope-based extrapolation makes every
-   * Korveth band converge on the same blue-green gradient and silently throws the
+   * Korvethan band converge on the same blue-green gradient and silently throws the
    * red channel away. The quadratic keeps r, g and b distinguishable all the way
    * down. Coefficients sum to 1 at every lambda, so neutrals stay neutral.
    *
@@ -73,7 +73,7 @@
   }
 
   /*
-   * 3x3 matrix taking linear sRGB to the three Korveth band responses.
+   * 3x3 matrix taking linear sRGB to the three Korvethan band responses.
    * shift = 0 is the identity matrix, so the slider starts at "no translation".
    */
   function bandMatrix(shift) {
@@ -117,7 +117,7 @@
 
   /*
    * Auto-exposure: the shifted bands can land far outside [0,1], so stretch the
-   * 1st-99th percentile of Korveth luminance back into range before rendering.
+   * 1st-99th percentile of Korvethan luminance back into range before rendering.
    */
   function exposure(src, m) {
     /*
@@ -195,10 +195,10 @@
   }
 
   /*
-   * Render the Korveth bands back into something a human monitor can show.
+   * Render the Korvethan bands back into something a human monitor can show.
    *
    *   native — the three bands driven straight onto R/G/B. False colour, but it
-   *            preserves every distinction a Korveth eye would make.
+   *            preserves every distinction a Korvethan eye would make.
    *   violet — band luminance only, tinted toward the near-UV edge humans can
    *            still just about see. Closest to "what they experience".
    *   mono   — band luminance, neutral grey. The readable option for documents.
@@ -235,8 +235,8 @@
    * every frame makes the picture pump as the scene moves.
    *
    * Returns { legibility, matrix, wavelengths, exposure }, where `legibility` is
-   * the standard deviation of the rendered Korveth luminance on a 0-100 scale —
-   * a rough proxy for "would a Korveth pick detail out of this" — and `exposure`
+   * the standard deviation of the rendered Korvethan luminance on a 0-100 scale —
+   * a rough proxy for "would a Korvethan pick detail out of this" — and `exposure`
    * is whichever exposure the call actually used.
    */
   function translate(src, dst, opts) {

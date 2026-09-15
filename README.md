@@ -2,12 +2,12 @@
 
 **Watch earth like a human.**
 
-Your Korveth hires cannot read a single thing on a standard monitor, because
-Earth displays emit essentially nothing above 400 nm. To a Korveth, your
+Your Korvethan hires cannot read a single thing on a standard monitor, because
+Earth displays emit essentially nothing above 400 nm. To a Korvethan, your
 carefully formatted quarterly deck is a blank warm-grey panel. This is bad for
 morale and, we are told, for compliance.
 
-Prism One re-encodes an image into the three near-ultraviolet bands a Korveth
+Prism One re-encodes an image into the three near-ultraviolet bands a Korvethan
 eye actually uses, and previews it in false colour so a human can confirm the
 memo is legible before sending it.
 
@@ -22,7 +22,7 @@ reach. That is the whole product.
 ## The model
 
 An RGB image samples a scene at roughly three wavelengths — 600 nm (R), 550 nm
-(G) and 450 nm (B). Korveth photoreceptors sit the same distance apart but
+(G) and 450 nm (B). Korvethan photoreceptors sit the same distance apart but
 shifted down the spectrum by the amount the **spectral shift** slider sets.
 
 `assets/uv-transform.js` models reflectance as a Lagrange quadratic through the
@@ -50,7 +50,7 @@ never captured. This is a faithful *re-encoding* of the information in the image
 not a photograph of real UV radiance. Anyone claiming otherwise is lying to you
 at a valuation.
 
-For the actual job — making Earth material readable to a Korveth — the
+For the actual job — making Earth material readable to a Korvethan — the
 distinction does not matter, because the problem was never missing UV detail. It
 was a monitor that emits no UV at all.
 
@@ -67,7 +67,7 @@ was a monitor that emits no UV at all.
 Scrolling over the result sweeps the spectral shift; hold <kbd>Shift</kbd> for
 1 nm steps.
 
-The **Korveth legibility** readout is the standard deviation of rendered band
+The **Korvethan legibility** readout is the standard deviation of rendered band
 luminance on a 0–100 scale — a rough proxy for whether detail survives the
 translation.
 
@@ -106,7 +106,7 @@ const stats = UV.translate(src, dst, { shift: 125, contrast: 0.4, render: 'mono'
 ```
 
 Next up: `POST /v1/translate` for stills and a WebSocket channel for live
-content, so a whole floor of Korveths can be served at once. Because the
+content, so a whole floor of Korvethans can be served at once. Because the
 transform is a single 3×3 matrix per shift value, a streaming implementation can
 send the matrix once per parameter change and let the client apply it, rather
 than re-encoding every frame server side. This is extremely cheap, and will be
